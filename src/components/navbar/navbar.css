@@ -1,9 +1,10 @@
 .navbar_box {
     width: 100%;
-    background: #fff;
+
 }
 
-.navbar {
+.navbar,
+.catalog_navbar {
     max-width: 1440px;
     width: 100%;
     padding: var(--pd1);
@@ -11,16 +12,41 @@
     align-items: center;
     gap: var(--gap2);
     border-bottom: 1px solid #aaaaaac7;
+    background: #fff;
 }
 
-.navbar>:first-child {
+.catalog_navbar {
+    background: #eee;
+}
+
+.navbar,
+.catalog_navbar>:first-child {
     display: flex;
     align-items: center;
     gap: var(--gap2);
     flex: 1;
 }
 
-.navbar>:first-child>a {
+
+
+.catalog_navbar .search_box {
+    display: none;
+}
+
+.catalog_navbar .location {
+    border: 2px solid #aaa;
+}
+
+
+/* ==========left navbar section ============= */
+.left_nav {
+    display: flex;
+    align-items: center;
+    gap: var(--gap2);
+    flex: 1;
+}
+
+.left_nav>a {
     font-size: 28px;
     font-weight: 600;
     color: #000;
@@ -28,7 +54,6 @@
 }
 
 /* ============= search ================ */
-
 .search_box {
     width: 360px;
     height: 43px;
@@ -68,13 +93,17 @@
 
 /* ============ location ======== */
 .location {
-    padding: 0.5% 1.5%;
+    padding: 0.6% 1.5%;
     border: 2px solid #eee;
     background: #eee;
-    border-radius: 15px;
+    border-radius: 13px;
     display: flex;
     align-items: center;
     gap: 10px;
+}
+
+.location:hover {
+    background: #ddd;
 }
 
 .icon {
@@ -98,6 +127,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    cursor: pointer;
 }
 
 .language:hover * {
@@ -110,10 +140,8 @@
     border: none;
     background: transparent;
     outline: none;
-}
-
-.language>select:checked {
-    display: none;
+    cursor: pointer;
+    appearance: none;
 }
 
 .language>select>option {

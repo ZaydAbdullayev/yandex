@@ -1,0 +1,30 @@
+.catalog_box {
+    width: 100%;
+    background: #eee;
+}
+
+.catalog_page {
+    max-width: 1440px;
+    width: 100%;
+    padding: var(--pd3);
+    display: flex;
+    gap: var(--gap1);
+}
+
+.product_filter {
+    width: calc(20% - 15px);
+    background: #fce000;
+}
+
+.product_show {
+    width: calc(55% - 15px);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+}
+
+.product_basket {
+    width: calc(25% - 15px);
+    background: green;
+}

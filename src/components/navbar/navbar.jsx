@@ -1,6 +1,6 @@
 import React from "react";
 import "./navbar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { IoMdPin } from "react-icons/io";
 import { BsGlobe2 } from "react-icons/bs";
@@ -8,11 +8,12 @@ import { IoFastFoodSharp } from "react-icons/io5";
 import { BiSearch } from "react-icons/bi";
 
 export const Navbar = () => {
+  const location = useLocation().pathname;
   return (
     <div className="navbar_box">
-      <div className="navbar">
-        <div>
-          <Link to="/">Yandex@Eat</Link>
+      <div className={location === "/" ? "navbar" : "catalog_navbar"}>
+        <div className="left_nav">
+          <Link to="/catalog">Yandex@Eat</Link>
           <form className="search_box">
             <span className="icon">
               <BiSearch />
