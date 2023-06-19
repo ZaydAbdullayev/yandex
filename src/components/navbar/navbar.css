@@ -37,6 +37,10 @@
     border: 2px solid #aaa;
 }
 
+.catalog_navbar .login_btn {
+    background: #ccc;
+}
+
 
 /* ==========left navbar section ============= */
 .left_nav {

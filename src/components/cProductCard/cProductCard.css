@@ -22,8 +22,13 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    color: #333;
+    color: #111;
     gap: 5px;
+}
+
+.product_info>div {
+    display: flex;
+    flex-direction: column;
 }
 
 .product_info>div>p {

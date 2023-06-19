@@ -10,71 +10,61 @@ import foto4 from "../assets/images/hot-sushi-rolls-served-leaves-wood-board-whi
 export const CatalogCard = () => {
   return (
     <>
-      <figure className="catalog_product">
-        <img src={foto} alt="images" />
-        <figcaption className="product_info">
-          <div>
-            <p>40 000 sum</p>
-            <span>Shashlik</span>
-            <span></span>
-          </div>
-          <button>
-            <span>+</span> Qo'shish
-          </button>
-        </figcaption>
-      </figure>
-      <figure className="catalog_product">
-        <img src={foto1} alt="images" />
-        <figcaption className="product_info">
-          <div>
-            <p>40 000 sum</p>
-            <span>Shashlik</span>
-            <span></span>
-          </div>
-          <button>
-            <span>+</span> Qo'shish
-          </button>
-        </figcaption>
-      </figure>{" "}
-      <figure className="catalog_product">
-        <img src={foto2} alt="images" />
-        <figcaption className="product_info">
-          <div>
-            <p>40 000 sum</p>
-            <span>Shashlik</span>
-            <span></span>
-          </div>
-          <button>
-            <span>+</span> Qo'shish
-          </button>
-        </figcaption>
-      </figure>{" "}
-      <figure className="catalog_product">
-        <img src={foto3} alt="images" />
-        <figcaption className="product_info">
-          <div>
-            <p>40 000 sum</p>
-            <span>Shashlik</span>
-            <span></span>
-          </div>
-          <button>
-            <span>+</span> Qo'shish
-          </button>
-        </figcaption>
-      </figure>{" "}
-      <figure className="catalog_product">
-        <img src={foto4} alt="images" />
-        <figcaption className="product_info">
-          <div>
-            <p>40 000 sum</p>
-            <span>Shashlik</span>
-            <span></span>
-          </div>
-          <button>
-            <span>+</span> Qo'shish
-          </button>
-        </figcaption>
-      </figure>
+      {data.map((item) => {
+        return (
+          <figure className="catalog_product">
+            <img src={item.img} alt="images" />
+            <figcaption className="product_info">
+              <div>
+                <p>{item.price}</p>
+                <span>{item.name}</span>
+                <span>{item.description}</span>
+              </div>
+              <button>
+                <span>+</span> Qo'shish
+              </button>
+            </figcaption>
+          </figure>
+        );
+      })}
     </>
   );
 };
+
+const data = [
+  {
+    id: "dfghfds",
+    img: foto,
+    price: "40 000",
+    name: "Shashlik",
+    description: "juda mazali",
+  },
+  {
+    id: "dfggfdh",
+    img: foto1,
+    price: "40 000",
+    name: "Shashlik",
+    description: "juda mazali",
+  },
+  {
+    id: "dwerfc",
+    img: foto2,
+    price: "40 000",
+    name: "Shashlik",
+    description: "juda mazali",
+  },
+  {
+    id: "dffsdbs",
+    img: foto3,
+    price: "40 000",
+    name: "Shashlik",
+    description: "juda mazali",
+  },
+  {
+    id: "ssdfrs",
+    img: foto4,
+    price: "40 000",
+    name: "Shashlik",
+    description: "juda mazali",
+  },
+];

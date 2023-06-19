@@ -11,19 +11,159 @@
     gap: var(--gap1);
 }
 
+/* ============== Product filter section ======= */
 .product_filter {
     width: calc(20% - 15px);
     background: #fce000;
 }
 
+/* ============== product show section =========== */
 .product_show {
     width: calc(55% - 15px);
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    gap: var(--gap1);
+}
+
+.about_restoran {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.about_restoran>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.about_restoran_item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: var(--pd4);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(to top right, #000000af, #0000005d, #00000004);
+}
+
+.about_restoran_item>span {
+    inline-size: 100%;
+    text-align: end;
+}
+
+.restoran_btn {
+    padding: 1.5% 1.5% 0.5%;
+    font-size: 30px;
+    color: #333;
+    background: #eee;
+    border: none;
+    border-radius: 15px;
+}
+
+.restoran_btn>svg:active {
+    transform: scale(1.1);
+}
+
+.restoran_info_box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap1);
+}
+
+.restoran_info_box>h1 {
+    font-size: var(--fs1);
+    color: #fff;
+}
+
+.restoran_delivery {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
     gap: 10px;
 }
 
+.restoran_delivery>div {
+    padding: 1.5% 2.5%;
+    display: flex;
+    align-items: center;
+    gap: var(--gap3);
+    background: #eee;
+    color: #000;
+    border-radius: 15px;
+}
+
+.restoran_delivery>div>span {
+    font-size: var(--fs4);
+}
+
+.restoran_delivery>div>p {
+    font-size: var(--fs8);
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.restoran_delivery>div>p>span {
+    inline-size: 100%;
+    font-size: var(--fs7);
+    color: #555;
+}
+
+.restoran_delivery>button {
+    padding: 1.3% 2%;
+}
+
+
+/* ======== delivery info section ========== */
+.free_delivery {
+    width: 100%;
+    max-height: 80px;
+    height: 100%;
+    padding: 1% 3%;
+    display: flex;
+    align-items: center;
+    gap: var(--gap2);
+    background: #00ff0018;
+    border-radius: 20px;
+    color: #5cdb5c;
+    border: 1px solid #00ff0040;
+}
+
+.free_delivery>img {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    filter: invert(3%) sepia(100%) saturate(555%) hue-rotate(59deg) brightness(143%) contrast(98%);
+}
+
+.delivery_info>p {
+    font-size: var(--fs5);
+    font-weight: 600;
+}
+
+/* ============ restoran's products =========== */
+.restoran_product {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px 10px;
+}
+
+.restoran_product>h1 {
+    inline-size: 100%;
+    font-size: var(--fs2);
+    color: #111;
+}
+
+/* ===========basket show section ============ */
 .product_basket {
     width: calc(25% - 15px);
     background: green;
