@@ -4,7 +4,7 @@
     height: 380px;
     display: flex;
     flex-direction: column;
-    border-radius: 10px;
+    border-radius: 20px;
     background: #fff;
     gap: 10px;
 }
@@ -29,11 +29,14 @@
 .product_info>div {
     display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
-.product_info>div>p {
+.product_info>div>:nth-child(1) {
     font-size: var(--fs4);
     font-weight: 500;
+    border: none;
+    outline: none;
 }
 
 .product_info>div>span {

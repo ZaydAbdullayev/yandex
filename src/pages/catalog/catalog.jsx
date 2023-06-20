@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./catalog.css";
 import { CatalogCard } from "../../components/cProductCard/cProductCard";
+import { ProductMenu } from "../../components/productMenu/productMenu";
+import { Link, useLocation } from "react-router-dom";
 
 import main_img from "../../components/assets/images/fast_food2.jpg";
 import { MdOutlineFavoriteBorder } from "react-icons/md";
@@ -9,9 +11,16 @@ import { BsInfoCircle } from "react-icons/bs";
 import { BsFillStarFill } from "react-icons/bs";
 import { MdOutlineAccessTimeFilled } from "react-icons/md";
 import delivery from "../../components/assets/images//11146-NN5BIF.jpg";
+import { FiArrowLeft } from "react-icons/fi";
+import { Cart } from "../cart/cart";
 
 export const Catalog = () => {
   const [favorite, setFavorite] = useState(false);
+  const query = useLocation().search.split("=")[1];
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [query]);
 
   const addToLike = () => {
     setFavorite((prevFavorite) => !prevFavorite);
@@ -21,7 +30,20 @@ export const Catalog = () => {
     <div className="catalog_box">
       <div className="catalog_page">
         {/* ========== filter the product ============== */}
-        <div className="product_filter"></div>
+        <div className="product_filter">
+          <Link to="/">
+            <FiArrowLeft /> Barcha restoranlar
+          </Link>
+          <ProductMenu>
+            {menuData.map((item, index) => {
+              return (
+                <Link to={`/catalogq?=${item.query}`} key={index}>
+                  {item.name}
+                </Link>
+              );
+            })}
+          </ProductMenu>
+        </div>
 
         {/* =========== show product section ============= */}
         <div className="product_show">
@@ -75,10 +97,46 @@ export const Catalog = () => {
             <CatalogCard />
           </div>
         </div>
-
         {/* =============== basket section =========== */}
-        <div className="product_basket"></div>
+        <div className="product_basket">
+          <Cart />
+        </div>
       </div>
     </div>
   );
 };
+
+const menuData = [
+  {
+    name: "Lavash",
+    query: "lavash",
+  },
+  {
+    name: "Gamburger",
+    query: "gamburger",
+  },
+  {
+    name: "Donar",
+    query: "donar",
+  },
+  {
+    name: "Hot-Dog",
+    query: "hotdog",
+  },
+  {
+    name: "Salat",
+    query: "salat",
+  },
+  {
+    name: "Pitsa",
+    query: "pitsa",
+  },
+  {
+    name: "Shovurma",
+    query: "shourma",
+  },
+  {
+    name: "KFC",
+    query: "kfc",
+  },
+];

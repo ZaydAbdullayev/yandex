@@ -1,5 +1,6 @@
 import React from "react";
 import "./cProductCard.css";
+import { NumericFormat } from "react-number-format";
 
 import foto from "../assets/images/assortment-spanish-pintxos.jpg";
 import foto1 from "../assets/images/delicious-food-black-board (1).jpg";
@@ -12,11 +13,16 @@ export const CatalogCard = () => {
     <>
       {data.map((item) => {
         return (
-          <figure className="catalog_product">
+          <figure className="catalog_product" key={item.id}>
             <img src={item.img} alt="images" />
             <figcaption className="product_info">
               <div>
-                <p>{item.price}</p>
+                <NumericFormat
+                  value={item.price}
+                  suffix=" sum"
+                  thousandSeparator=" "
+                  displayType="text"
+                />
                 <span>{item.name}</span>
                 <span>{item.description}</span>
               </div>
