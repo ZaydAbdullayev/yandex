@@ -1,6 +1,6 @@
 .catalog_box {
     width: 100%;
-    background: #eee;
+    background: #F5F4F2;
 }
 
 .catalog_page {
@@ -14,7 +14,25 @@
 /* ============== Product filter section ======= */
 .product_filter {
     width: calc(20% - 15px);
-    background: #fce000;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap1);
+}
+
+.product_filter>a {
+    padding: var(--pd2);
+    font-size: var(--fs5);
+    margin-bottom: 5%;
+    color: #222;
+    line-height: 2.3;
+    border-radius: 13px;
+    transition: all 0.3s ease;
+    background: #fff;
+    font-weight: 600;
+}
+
+.product_filter>a:hover {
+    background: #ffffff85
 }
 
 /* ============== product show section =========== */
@@ -24,6 +42,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: var(--gap1);
+    padding-bottom: 5%;
 }
 
 .about_restoran {
@@ -165,6 +184,8 @@
 
 /* ===========basket show section ============ */
 .product_basket {
+    position: sticky;
+    top: 18%;
     width: calc(25% - 15px);
-    background: green;
+    height: 83vh;
 }

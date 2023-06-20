@@ -1,6 +1,7 @@
 import React from "react";
 import "./navbar.css";
 import { Link, useLocation } from "react-router-dom";
+import { NumericFormat } from "react-number-format";
 
 import { IoMdPin } from "react-icons/io";
 import { BsGlobe2 } from "react-icons/bs";
@@ -47,7 +48,12 @@ export const Navbar = () => {
           <span className="icon">
             <IoFastFoodSharp />
           </span>
-          <p>13000 sum</p>
+          <NumericFormat
+            value="13000"
+            suffix="sum"
+            thousandSeparator=","
+            displayType="text"
+          />
         </div>
         <button className="login_btn">Login</button>
       </div>

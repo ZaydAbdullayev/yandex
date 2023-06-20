@@ -1,0 +1,46 @@
+.food_menu {
+    position: sticky;
+    top: 15%;
+    left: 0;
+    overflow-y: auto;
+}
+
+.food_menu::-webkit-scrollbar {
+    display: none;
+}
+
+.food_menu,
+.food_menu>ul {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    color: #222;
+}
+
+.food_menu>h1 {
+    padding: var(--pd2);
+    font-size: var(--fs8);
+    font-weight: 500;
+}
+
+.food_menu>ul {
+    list-style: none;
+}
+
+.food_menu>ul>a {
+    padding: var(--pd2);
+    font-size: var(--fs5);
+    color: #222;
+    line-height: 2.3;
+    border-radius: 13px;
+    transition: all 0.3s ease;
+}
+
+.active {
+    background: #fff;
+    font-weight: 600;
+}
+
+.food_menu>ul>a:hover {
+    background: rgba(255, 255, 255, 0.521)
+}

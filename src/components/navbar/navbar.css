@@ -1,6 +1,5 @@
 .navbar_box {
     width: 100%;
-
 }
 
 .navbar,
@@ -16,7 +15,7 @@
 }
 
 .catalog_navbar {
-    background: #eee;
+    background: #F5F4F2;
 }
 
 .navbar,
@@ -167,7 +166,8 @@
 
 }
 
-.card>p {
+.card>:nth-child(2) {
+    padding: 0.5%;
     font-size: var(--fs5);
     font-weight: 600;
 }
