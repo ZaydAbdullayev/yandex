@@ -12,6 +12,7 @@
     gap: var(--gap2);
     border-bottom: 1px solid #aaaaaac7;
     background: #fff;
+    z-index: 999999999999999999;
 }
 
 .catalog_navbar {
