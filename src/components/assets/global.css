@@ -38,8 +38,11 @@ button {
     cursor: pointer;
 }
 
-.root {
+#root {
+    max-width: 1440px;
     width: 100%;
+    
+
 }
 
 input {
