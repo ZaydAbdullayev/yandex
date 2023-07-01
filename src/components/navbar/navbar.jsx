@@ -14,8 +14,7 @@ export const Navbar = () => {
     <div className="navbar_box">
       <div className={location === "/" ? "navbar" : "catalog_navbar"}>
         <div className="left_nav">
-        <Link to="/catalog">Yandex@Eat</Link>
-          <Link to="/add-product">Add_product</Link>
+        <Link to="/">Yandex@Eat</Link>
           <form className="search_box">
             <span className="icon">
               <BiSearch />
