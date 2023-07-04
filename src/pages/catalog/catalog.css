@@ -185,7 +185,7 @@
 /* ===========basket show section ============ */
 .product_basket {
     position: sticky;
-    top: 18%;
+    top: 10%;
     width: calc(25% - 15px);
-    height: 83vh;
+    height: 100vh;
 }

@@ -7,6 +7,7 @@
     background: aliceblue;
     padding: 3% 0 3%;
 }
+
 /*========== product_item ===========*/
 /*========== product_item ===========*/
 /*========== product_item ===========*/
@@ -15,16 +16,23 @@
     width: 330px;
     height: 560px;
     border-radius: 20px;
-    background:  #191919dc;
+    background: #191919dc;
 }
-.product_item > Link {
+
+.product_item>span {
+    width: 100%;
+    padding: 2% 4% 0; 
+    display: flex;
+    justify-content: flex-end;
+}
+
+.product_item>span>button {
+    background: none;
+    border: none;
     color: #fff;
-    padding-left: 5%;
-    padding-top: 4%;
-    font-size: 20px;
-    font-weight: bold;
 }
-.product_item > div{
+
+.product_item>div {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -32,25 +40,28 @@
     flex-direction: column;
     padding: 10% 0;
     gap: 20px;
-    
+
 }
-.product_item > div > button{
+
+.product_item>div>button {
     width: 70px;
     height: 70px;
     border-radius: 50%;
-    background:mediumblue;
+    background: mediumblue;
     font-size: 30px;
     color: #fff;
     font-weight: bold;
 
     border: none;
 }
-.product_item > div > p {
+
+.product_item>div>p {
     font-size: 18px;
     color: #fff;
     font-weight: bold;
 }
-.product_item > form {
+
+.product_item>form {
     width: 100%;
     display: flex;
     justify-content: center;
@@ -58,7 +69,8 @@
     flex-direction: column;
     gap: 15px;
 }
-.product_item > form > span {
+
+.product_item>form>span {
     width: 274px;
     height: 45px;
     display: flex;
@@ -68,7 +80,8 @@
     border: 1px solid grey;
     padding: 0 0%;
 }
-.product_item > form > span > button {
+
+.product_item>form>span>button {
     border: none;
     background: none;
     font-size: 16px;
@@ -76,22 +89,25 @@
     color: #ffff;
     cursor: pointer;
 }
- .product_item > form > span >:first-child {
+
+.product_item>form>span>:first-child {
     width: 121px;
     height: 35px;
     border-radius: 7px;
 }
 
-.product_item > form > span >:nth-child(2) {
+.product_item>form>span>:nth-child(2) {
     width: 141px;
     height: 35px;
     border-radius: 7px;
-} 
-.product_item > form > span > button:hover {
+}
+
+.product_item>form>span>button:hover {
     background: #1919196d;
     border: 1px solid grey;
 }
-.product_item > form > input {
+
+.product_item>form>input {
     width: 274px;
     height: 45px;
     display: flex;
@@ -105,16 +121,20 @@
     color: #ffff;
     cursor: pointer;
 }
-.product_item > form > input[type ="text"] {
+
+.product_item>form>input[type="text"] {
     letter-spacing: 0.2rem;
 }
-.product_item > form >:nth-child(2) {
+
+.product_item>form>:nth-child(2) {
     padding: 0% 3%;
 }
-.product_item > form >:nth-child(2):hover {
+
+.product_item>form>:nth-child(2):hover {
     border: 2px solid yellow;
 }
-.product_item > form > button {
+
+.product_item>form>button {
     color: blue;
     cursor: pointer;
     font-weight: bold;
@@ -122,19 +142,23 @@
     border: none;
     padding-right: 210px;
 }
-.product_item > form > button:active{
+
+.product_item>form>button:active {
     color: red;
 }
-.product_item > form > input[ value="Log in"] {
+
+.product_item>form>input[ value="Log in"] {
     background: rgb(255, 247, 0);
     height: 40px;
     color: #191919dc;
     font-weight: bold;
 }
-.product_item > form > input[ value="Log in"]:hover {
+
+.product_item>form>input[ value="Log in"]:hover {
     background: #FCE000;
 }
-.product_item > form > div > button{
+
+.product_item>form>div>button {
     width: 274px;
     height: 45px;
     border-radius: 8px;
@@ -146,9 +170,11 @@
     cursor: pointer;
     text-align: center;
 }
-.product_item > form > p {
+
+.product_item>form>p {
     color: #ffff;
 }
+
 .footer {
     width: 100%;
     gap: 10px;
@@ -156,7 +182,8 @@
     justify-content: center;
     align-items: center;
 }
-.footer > button{
+
+.footer>button {
     width: 40px;
     height: 40px;
     border-radius: 50%;

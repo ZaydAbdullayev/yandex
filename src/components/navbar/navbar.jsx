@@ -2,6 +2,7 @@ import React from "react";
 import "./navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
+import { useNavigate } from "react-router-dom";
 
 import { IoMdPin } from "react-icons/io";
 import { BsGlobe2 } from "react-icons/bs";
@@ -10,11 +11,17 @@ import { BiSearch } from "react-icons/bi";
 
 export const Navbar = () => {
   const location = useLocation().pathname;
+  const navigate = useNavigate();
+
+  const log_in = () => {
+    navigate("/login");
+  };
+
   return (
     <div className="navbar_box">
       <div className={location === "/" ? "navbar" : "catalog_navbar"}>
         <div className="left_nav">
-        <Link to="/">Yandex@Eat</Link>
+          <Link to="/">Yandex@Eat</Link>
           <form className="search_box">
             <span className="icon">
               <BiSearch />
@@ -55,8 +62,8 @@ export const Navbar = () => {
             displayType="text"
           />
         </div>
-        <button className="login_btn">
-          <Link to="/login">Login</Link>
+        <button className="login_btn" type="button" onClick={log_in}>
+          login
         </button>
       </div>
     </div>
