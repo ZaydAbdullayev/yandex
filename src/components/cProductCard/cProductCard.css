@@ -14,6 +14,7 @@
     height: calc(100% - 40%);
     object-fit: cover;
     object-position: center;
+    border-radius: 15px;
 }
 
 .product_info {
@@ -43,6 +44,10 @@
     font-size: var(--fs5);
 }
 
+.product_info>div>:last-child{
+    color: #33333383;
+}
+
 .product_info>button {
     width: 100%;
     padding: 5% 0%;
@@ -52,9 +57,9 @@
     border: none;
     border-radius: 15px;
     font-size: var(--fs5);
+    gap: 10px;
 }
 
 .product_info>button>span {
     font-size: var(--fs4);
-    padding-right: 2%;
 }

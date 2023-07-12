@@ -1,17 +1,41 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./cProductCard.css";
 import { NumericFormat } from "react-number-format";
-
-import foto from "../assets/images/assortment-spanish-pintxos.jpg";
-import foto1 from "../assets/images/delicious-food-black-board (1).jpg";
-import foto2 from "../assets/images/delicious-food-black-board.jpg";
-import foto3 from "../assets/images/flat-lay-notepad-with-plate-delicious-kebab-ketchup.jpg";
-import foto4 from "../assets/images/hot-sushi-rolls-served-leaves-wood-board-white-background.jpg";
+import { ApiService } from "../../services/api.service";
+import { ApiGetService } from "../../services/api.service";
+import { useSnackbar } from "notistack";
 
 export const CatalogCard = () => {
+  const [product, setProduct] = useState([]);
+  const [count, setCount] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
+
+  useEffect(() => {
+    ApiGetService.fetching("get/products")
+      .then((res) => {
+        setProduct(res.data.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const addCart = (item) => {
+    ApiService.fetching("add/toCart", item)
+      .then((res) => {
+        console.log(res);
+        const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
+        enqueueSnackbar(msg, { variant: "success" });
+        const cart = product?.find((id) => id === item.id);
+        console.log(cart);
+        if (cart) {
+          setCount(true);
+        }
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      {data.map((item) => {
+      {product?.map((item) => {
         return (
           <figure className="catalog_product" key={item.id}>
             <img src={item.img} alt="images" />
@@ -26,8 +50,9 @@ export const CatalogCard = () => {
                 <span>{item.name}</span>
                 <span>{item.description}</span>
               </div>
-              <button>
-                <span>+</span> Qo'shish
+              <button onClick={() => addCart({ ...item, quantity: 1 })}>
+                <span style={count ? {} : { display: "none" }}>-</span>{" "}
+                {count ? item.quantity : "Qo'shish"} <span>+</span>
               </button>
             </figcaption>
           </figure>
@@ -36,41 +61,3 @@ export const CatalogCard = () => {
     </>
   );
 };
-
-const data = [
-  {
-    id: "dfghfds",
-    img: foto,
-    price: "40 000",
-    name: "Shashlik",
-    description: "juda mazali",
-  },
-  {
-    id: "dfggfdh",
-    img: foto1,
-    price: "40 000",
-    name: "Shashlik",
-    description: "juda mazali",
-  },
-  {
-    id: "dwerfc",
-    img: foto2,
-    price: "40 000",
-    name: "Shashlik",
-    description: "juda mazali",
-  },
-  {
-    id: "dffsdbs",
-    img: foto3,
-    price: "40 000",
-    name: "Shashlik",
-    description: "juda mazali",
-  },
-  {
-    id: "ssdfrs",
-    img: foto4,
-    price: "40 000",
-    name: "Shashlik",
-    description: "juda mazali",
-  },
-];

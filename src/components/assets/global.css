@@ -41,7 +41,7 @@ button {
 #root {
     max-width: 1440px;
     width: 100%;
-    
+
 
 }
 
@@ -52,4 +52,24 @@ input {
 ::selection {
     color: #888;
     background: #fce000;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+    background: rgba(51, 51, 51, 0.253);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fce000;
+    border-radius: 20px;
+}
+
+@media(max-width: 500px) {
+    ::selection {
+        display: none;
+    }
+
+    ::-webkit-scrollbar {
+        display: none;
+    }
 }
