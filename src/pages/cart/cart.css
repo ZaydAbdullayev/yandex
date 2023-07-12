@@ -96,7 +96,6 @@
     padding: 1% 0;
     display: flex;
     align-items: center;
-    justify-content: space-around;
 }
 
 .last>:last-child {
@@ -106,10 +105,12 @@
 .info {
     display: flex;
     flex-direction: column;
+    flex: 1;
+    margin-left: 3%;
 }
 
 .info>p {
-    font-size: var(--fs5);
+    font-size: var(--fs6);
     text-transform: capitalize;
 }
 
