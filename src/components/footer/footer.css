@@ -1,0 +1,43 @@
+.product-footer {
+    width: 100%;
+    margin-top: 3%;
+    padding: 0 0 5%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap1);
+}
+
+.product-footer>div {
+    display: flex;
+    gap: 30px;
+}
+
+.product-footer>p {
+    font-size: 30px;
+    font-family: bold;
+    font-family: sans-serif;
+}
+
+.product-footer>div>button {
+    padding: 1% 3%;
+    border-radius: 10px;
+    border: 1px solid #aaaa;
+    background: none;
+    color: #555;
+    font-size: var(--fs6);
+}
+
+.product-footer>hr {
+    width: 100%;
+    background: #aaaa;
+
+}
+
+.product-footer>span {
+    color: grey;
+}
+
+.product-footer>span>p {
+    color: grey;
+    font-size: 14px;
+}

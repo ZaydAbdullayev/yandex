@@ -13,7 +13,7 @@
 
 .cart_show_product {
     width: 100%;
-    height: 100%;
+    height: 80%;
     display: flex;
     flex-direction: column;
     gap: var(--gap3);
@@ -45,6 +45,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
     gap: var(--gap3);
     cursor: pointer;
 }
@@ -57,16 +58,27 @@
 .cart_delivery>p {
     font-size: var(--fs7);
     color: #27bb01;
+    inline-size: 80%;
 }
 
 /* ============= cart_body ============== */
 .cart_body {
     width: 100%;
+    height: 100%;
     display: flex;
     flex-direction: column;
     gap: 5px;
     overflow: hidden;
     overflow-y: auto;
+}
+
+.cart_body::-webkit-scrollbar {
+    width: 1px;
+    background: #fff;
+}
+
+.cart_body::-webkit-scrollbar-thumb {
+    background: #eee;
 }
 
 .cart_body_box {
@@ -115,12 +127,12 @@
 }
 
 .info>p>span {
-    color: #33333380;
+    color: #aaaa;
 }
 
 .info>span {
     font-size: var(--fs7);
-    color: #33333380;
+    color: #aaaa;
 }
 
 .count_box {
@@ -129,7 +141,7 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background: #33333333;
+    background: #aaaa;
     border-radius: 20px;
     font-size: var(--fs5);
 }
@@ -142,9 +154,6 @@
 
 /* =========== service price ============= */
 .service_price {
-    position: sticky;
-    left: 0;
-    bottom: 0;
     margin-top: 2%;
     padding: 3% 0;
     width: 100%;
@@ -154,7 +163,6 @@
     font-size: var(--fs5);
     color: #333;
     background: #fff;
-    z-index: 99999;
 }
 
 .service_price>span {
@@ -169,4 +177,48 @@
 .empty_cart>img {
     width: 100%;
     object-fit: cover;
+}
+
+/* ============== when became product in cart ============ */
+.cart_delivery>label {
+    width: 100%;
+    padding-top: 2%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.cart_delivery>label>p {
+    display: flex;
+    align-items: center;
+    font-size: var(--fs6);
+    flex: 1;
+    color: #27bb01;
+    gap: 10px;
+}
+
+.cart_delivery>label>p>span {
+    padding: 4% 5%;
+    font-size: var(--fs5);
+    background: #eee;
+    border-radius: 10px;
+    color: #333;
+}
+
+.cart_delivery>label>svg {
+    color: #aaa;
+}
+
+.cart_delivery>button {
+    width: 100%;
+    padding: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #FCE000;
+    color: #333;
+    font-size: var(--fs5);
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
 }

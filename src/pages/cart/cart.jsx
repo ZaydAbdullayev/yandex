@@ -1,29 +1,36 @@
 import React, { memo, useState, useEffect } from "react";
 import "./cart.css";
 import { ApiGetService } from "../../services/api.service";
+import { NumericFormat } from "react-number-format";
+import { CalculateTotalPrice } from "../../services/calc.service";
 
-import { BsBagCheckFill } from "react-icons/bs";
 import empty from "../../components/assets/images/empty-cart.gif";
+import { BsTaxiFrontFill, BsTaxiFront, BsInfoCircle } from "react-icons/bs";
+import { useSelector } from "react-redux";
 
 export const Cart = memo(() => {
   const [cart, setCart] = useState([]);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(0);
+  const [total, setTotal] = useState(0);
+  const updateCard = useSelector((state) => state.updateCard);
 
   useEffect(() => {
     ApiGetService.fetching("cart/get/products")
       .then((res) => {
         setCart(res?.data?.data);
+        const total_price = CalculateTotalPrice(res?.data?.data);
+        setTotal(total_price);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [updateCard]);
 
-  const countINC = () => {
+  const countINC = (id) => {
     setCount(count + 1);
-  };
+  }; 
 
-  const countDEC = () => {
+  const countDEC = (id) => {
     setCount(count > 0 ? count - 1 : 0);
   };
 
@@ -38,7 +45,7 @@ export const Cart = memo(() => {
         {/* =========== Cart body section ======= */}
         <div className="cart_body">
           <div className="cart_body_box last">
-            {cart.map((item) => {
+            {cart?.map((item) => {
               return (
                 <div className="cart_body__item" key={item.id}>
                   <img src={item.img} alt="product_photo" />
@@ -51,9 +58,9 @@ export const Cart = memo(() => {
                       </p>
                     </div>
                     <div className="count_box">
-                      <button onClick={countDEC}>-</button>
-                      <span>{item.quontity || count}</span>
-                      <button onClick={countINC}>+</button>
+                      <button onClick={() => countDEC(item.id)}>-</button>
+                      <span>{item.quantity}</span>
+                      <button onClick={() => countINC(item.id)}>+</button>
                     </div>
                   </div>
                 </div>
@@ -61,20 +68,20 @@ export const Cart = memo(() => {
             })}
           </div>
 
-          {cart.length ? (
+          {cart?.length ? (
             <div
               className="service_price"
               style={
-                cart.length === 1 ? {} : { borderTop: "1px solid #3333334b" }
+                cart?.length === 1 ? {} : { borderTop: "1px solid #3333334b" }
               }
             >
-              <p>Xizmat ishi:</p>
+              <p>Xizmat xaqi:</p>
               <span>5 000 sum</span>
             </div>
           ) : (
             <figure className="empty_cart">
               <p style={{ fontSize: "var(--fs5)", textAlign: "center" }}>
-                Savat bo'sh
+                Hozircha savatingiz bo'sh
               </p>
               <img src={empty} alt="empty_gif" />
             </figure>
@@ -83,12 +90,35 @@ export const Cart = memo(() => {
       </div>
 
       {/* =========== delivery section ============ */}
-      <div className="cart_delivery">
-        <span>
-          <BsBagCheckFill />
-        </span>
-        <p>Kamida 10000 so'mdan boshlab bepul yetkazib berish hizmati</p>
-      </div>
+      {!cart?.length ? (
+        <div className="cart_delivery">
+          <span>
+            <BsTaxiFrontFill />
+          </span>
+          <p>Kamida 10 000 so'mdan boshlab bepul yetkazib berish hizmati</p>
+        </div>
+      ) : (
+        <div className="cart_delivery">
+          <label>
+            <p>
+              <span>
+                <BsTaxiFront />
+              </span>
+              Yetkazib berish 0sum
+            </p>
+            <BsInfoCircle />
+          </label>
+          <button>
+            Jami To'lov:{" "}
+            <NumericFormat
+              value={total}
+              suffix=" sum"
+              thousandSeparator=" "
+              displayType="text"
+            />
+          </button>
+        </div>
+      )}
     </div>
   );
 });

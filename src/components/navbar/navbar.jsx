@@ -14,7 +14,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   const log_in = () => {
-    navigate("/login");
+    navigate("/signin");
   };
 
   return (

@@ -10,14 +10,14 @@
 
 .root {
     width: 100%;
-    height: auto;
+    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
+    align-items: center;
     scroll-behavior: smooth;
-    padding: 5% 7%;
-    gap: 10px;
+    padding: 5% 10%;
+    gap: var(--gap2);
 
 }
 
@@ -26,275 +26,178 @@
 /* ============ Navbar ============ */
 /* ============ Navbar ============ */
 
-.Navbar {
+.offers {
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
 }
 
-.Navbar>div {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-}
-
-.Navbar>div>p {
-    font-size: 35px;
+.offers>p {
+    font-size: var(--fs3);
     font-weight: bold;
 }
 
-.Navbar>div>button {
-    width: 5%;
-    height: 30px;
+.offers>button {
+    padding: 0.5% 2%;
     border-radius: 5px;
     border: none;
-    font-size: 18px;
+    font-size: var(--fs5);
     background: #19191942;
 }
 
 /*========== product-card =========== */
-/*========== product-card =========== */
-/*========== product-card =========== */
-/*========== product-card =========== */
 
-.product-card {
+.product-card,
+.product-item {
     width: 100%;
-    height: auto;
     gap: 30px;
     display: flex;
-    justify-content: flex-start;
     flex-wrap: wrap;
-    align-items: flex-start;
-    padding: 2% 0;
 }
 
 .Restaurant {
-    font-size: 35px;
+    inline-size: 100%;
+    font-size: var(--fs3);
     font-weight: bold;
-    padding-top: 30px;
+    padding: 2% 0% 0;
+}
+
+.product-card>section {
+    width: calc(100% / 3 - 20px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap4);
 }
 
 .product-card>section>div {
-    width: 245px;
-    height: calc(((((35vw - 65px - 140px + 36px) / 3) - 36px) * 0.59) + 104px);
-    border-radius: 18px;
+    width: 100%;
+    height: 220px;
+    border-radius: 20px;
     background: azure;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
     padding: 1%;
     position: relative;
     gap: 30px;
+    overflow: hidden;
 }
 
-.product-card>section>div>:nth-child(1) {
-    width: 75px;
-    height: 27px;
-    border-radius: 12px;
-    font-size: 9.5px;
+.product-card>section>div>:nth-child(1),
+.product-item>section>div>:nth-child(1) {
+    padding: 2% 3%;
+    border-radius: 20px;
+    font-size: var(--fs7);
     font-weight: bold;
     border: none;
-    background: darkgray;
-    color: #191919;
-    padding: 0 1%;
+    background: #ffe5ce;
+    color: #333;
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 5%;
+    left: 3%;
     z-index: 9;
-    border-top-right-radius: 0%;
-    border-bottom-left-radius: 0%;
 }
 
-.product-card>section>div>:nth-child(3) {
-    width: 75px;
-    height: 26px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: bold;
+.product-card>section>div>:nth-child(3),
+.product-item>section>div>:nth-child(3) {
+    padding: 3% 8% 3% 7%;
+    border-radius: 20px 0 20px 20px;
+    font-size: var(--fs6);
     border: none;
     color: #fff;
-    background: cornflowerblue;
+    background: #00000090;
     position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 0 1%;
+    right: -1%;
+    bottom: 5%;
+    overflow: hidden;
     z-index: 9;
-    border-bottom-left-radius: 0%;
-    border-top-right-radius: 0%;
 }
 
-.product-card>section>div>figure>img {
-    width: 245px;
-    height: calc(((((35vw - 65px - 140px + 36px) / 3) - 36px) * 0.59) + 104px);
+.product-card>section>div>:nth-child(3)>svg,
+.product-item>section>div>:nth-child(3)>svg {
+    color: #fc0;
+    font-size: var(--fs5);
+}
+
+.product-card>section>div>figure>img,
+.product-item>section>div>figure>img {
+    width: 100%;
+    height: 100%;
     border-radius: 18px;
-    /* z-index: 999; */
     position: absolute;
     top: 0;
     left: 0;
     object-fit: cover;
 }
 
-.product-card>section>span>h1 {
-    font-size: 18px;
+.product-card>section>label>h1 {
+    font-size: var(--fs4);
     font-weight: bold;
-    padding: 1%;
 }
 
-.product-card>section>span>p {
-    font-size: 12px;
-    padding: 1.5% 0;
+.product-card>section>label>p {
+    font-size: var(--fs5);
+    line-height: 2;
 }
 
-.product-card>section>span>button {
-    width: 75px;
-    height: 27px;
-    border-radius: 12px;
-    font-size: 9.5px;
+.product-card>section>label>button {
+    padding: 2% 5%;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    font-size: var(--fs7);
     font-weight: bold;
     border: none;
-    background: rgb(31, 30, 30);
-    color: #fff;
-    padding: 0 1%;
-    border-bottom-left-radius: 0%;
-    border-top-right-radius: 0%;
+    background: #ece6de;
+    color: #333;
+    gap: var(--gap4);
 }
 
-/* ============= product-item =========== */
-/* ============= product-item =========== */
-/* ============= product-item =========== */
+.product-card>section>label>button>svg {
+    font-size: var(--fs4);
+    color: #15a302;
+}
+
+/* .product-card>section>label>button */
+
 /* ============= product-item =========== */
 
-.product-item {
-    width: 100%;
-    height: auto;
-    gap: 30px;
+
+.product-item>section {
+    width: calc(100% / 4 - 25px);
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    padding: 2% 0;
+    flex-direction: column;
+    gap: var(--gap4);
 }
+
 
 .product-item>section>div {
-    width: 200px;
-    height: calc(((((35vw - 220px - 140px + 36px) / 3) - 36px) * 0.59) + 104px);
-    border-radius: 18px;
+    width: 100%;
+    height: 170px;
+    border-radius: 20px;
     background: azure;
     display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: row;
     padding: 1%;
     position: relative;
-    top: 0;
-    left: 0;
+    gap: 30px;
+    overflow: hidden;
 }
 
 .product-item>section>div>:nth-child(1) {
-    width: 75px;
-    height: 27px;
-    border-radius: 12px;
-    font-size: 9.5px;
-    font-weight: bold;
-    border: none;
-    background: darkgray;
-    color: #191919;
-    padding: 0 1%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9;
-    border-top-right-radius: 0%;
-    border-bottom-left-radius: 0%;
+    font-size: var(--fs7);
 }
 
 .product-item>section>div>:nth-child(3) {
-    width: 75px;
-    height: 26px;
-    border-radius: 12px;
-    font-size: 11px;
-    font-weight: bold;
-    border: none;
-    color: #fff;
-    background: cornflowerblue;
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 0 1%;
-    z-index: 9;
-    border-bottom-left-radius: 0%;
-    border-top-right-radius: 0%;
+    font-size: var(--fs7);
 }
 
-.product-item>section>div>figure>img {
-    width: 200px;
-    height: calc(((((35vw - 220px - 140px + 36px) / 3) - 36px) * 0.59) + 104px);
-    border-radius: 18px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    object-fit: cover;
+
+
+.product-item>section>label>h1 {
+    font-size: var(--fs8);
 }
 
-.product-item>section>span>h1 {
-    font-size: 18px;
-    font-weight: bold;
-    padding: 1%;
+.product-item>section>label>p {
+    font-size: var(--fs6);
+    line-height: 2;
 }
 
-.product-item>section>span>p {
-    font-size: 12px;
-    padding: 1.5% 0;
-}
-
-.product-footer {
-    width: 100%;
-    height: 300px;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 1% 5%;
-    gap: 20px;
-}
-
-.product-footer>div {
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-.product-footer>p {
-    font-size: 30px;
-    font-family: bold;
-    padding: 2%;
-    font-family: sans-serif;
-}
-
-.product-footer>div>button {
-    width: 120px;
-    height: 30px;
-    border-radius: 8px;
-    border: 1px solid grey;
-    background: none;
-    color: grey;
-}
-
-.product-footer>hr {
-    width: 100%;
-
-}
-
-.product-footer>span {
-    color: grey;
-}
-
-.product-footer>span>p {
-    color: grey;
-    font-size: 14px;
-}

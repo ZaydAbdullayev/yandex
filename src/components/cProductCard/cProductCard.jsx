@@ -4,33 +4,58 @@ import { NumericFormat } from "react-number-format";
 import { ApiService } from "../../services/api.service";
 import { ApiGetService } from "../../services/api.service";
 import { useSnackbar } from "notistack";
+import { useSelector, useDispatch } from "react-redux";
+import { acUpdateCard } from "../../redux/cart";
 
 export const CatalogCard = () => {
   const [product, setProduct] = useState([]);
   const [count, setCount] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+  const [cart, setCart] = useState([]);
+  const updateCard = useSelector((state) => state.updateCard);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     ApiGetService.fetching("get/products")
       .then((res) => {
-        setProduct(res.data.data);
+        setProduct(res?.data?.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
-  const addCart = (item) => {
-    ApiService.fetching("add/toCart", item)
+  useEffect(() => {
+    ApiGetService.fetching("cart/get/products")
       .then((res) => {
-        console.log(res);
-        const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
-        enqueueSnackbar(msg, { variant: "success" });
-        const cart = product?.find((id) => id === item.id);
-        console.log(cart);
-        if (cart) {
-          setCount(true);
-        }
+        setCart(res?.data?.data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+      });
+    cart.forEach((item) => {
+      setCount(item.quantity);
+    });
+  }, [cart, updateCard]);
+
+  const addCart = (item) => {
+    if (count) {
+      ApiService.fetching(`update/cart/:${item.id}`, item)
+        .then((res) => {
+          console.log(res);
+          const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
+          enqueueSnackbar(msg, { variant: "success" });
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    } else {
+      ApiService.fetching("add/toCart", item)
+        .then((res) => {
+          console.log(res);
+          const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
+          enqueueSnackbar(msg, { variant: "success" });
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -50,9 +75,15 @@ export const CatalogCard = () => {
                 <span>{item.name}</span>
                 <span>{item.description}</span>
               </div>
-              <button onClick={() => addCart({ ...item, quantity: 1 })}>
-                <span style={count ? {} : { display: "none" }}>-</span>{" "}
-                {count ? item.quantity : "Qo'shish"} <span>+</span>
+              <button>
+                <span
+                  style={count ? {} : { display: "none" }}
+                  onClick={() => addCart({ ...item, quantity: -1 })}
+                >
+                  -
+                </span>{" "}
+                {count ? count : "Qo'shish"}{" "}
+                <span onClick={() => addCart({ ...item, quantity: 1 })}>+</span>
               </button>
             </figcaption>
           </figure>
