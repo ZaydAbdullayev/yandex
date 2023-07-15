@@ -5,6 +5,7 @@ import { acLogin, acLogout } from "../../redux/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
+import { ApiService } from "../../services/api.service";
 
 export const Signin = () => {
   const navigate = useNavigate();
@@ -25,7 +26,16 @@ export const Signin = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const value = Object.fromEntries(formData.entries());
+    value.phone = value?.phone?.split(" ")?.join("");
     console.log(value);
+    if (pass1 === pass2) {
+      ApiService.fetching("register/user", value)
+        .then((res) => {
+          console.log(res);
+          navigate("/");
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (
@@ -91,9 +101,6 @@ export const Signin = () => {
             <span onClick={handleShow} style={show ? {} : { color: "orange" }}>
               {show ? <BsEyeSlash /> : <BsEye />}
             </span>
-            {/* <p style={err ? { display: "flex" } : {}} className="failed">
-              Foydalanuvchi yoki parol xaroligi...!
-            </p> */}
           </label>
           <button>Yuborish</button>
           <span>© 2023 Foodify</span>
@@ -132,7 +139,17 @@ export const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const value = Object.fromEntries(formData.entries());
+    value.phone = value?.phone?.split(" ")?.join("");
     console.log(value);
+    if (pass1 === pass2) {
+      ApiService.fetching("login/users", value)
+        .then((res) => {
+          console.log(res.data.data);
+          const user = res?.data?.data;
+          localStorage.setItem("customer", JSON.stringify(user));
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
   return (

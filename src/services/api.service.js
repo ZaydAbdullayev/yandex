@@ -4,7 +4,7 @@ const base_url = "https://yandex.sp-school58.uz";
 
 const config = {
   headers: {
-    "Content-Type": "multipart/form-data",
+    "Content-Type": "application/json; multipart/form-data",
   },
 };
 

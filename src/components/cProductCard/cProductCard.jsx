@@ -37,25 +37,14 @@ export const CatalogCard = () => {
   }, [cart, updateCard]);
 
   const addCart = (item) => {
-    if (count) {
-      ApiService.fetching(`update/cart/:${item.id}`, item)
-        .then((res) => {
-          console.log(res);
-          const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
-          enqueueSnackbar(msg, { variant: "success" });
-          dispatch(acUpdateCard());
-        })
-        .catch((err) => console.log(err));
-    } else {
-      ApiService.fetching("add/toCart", item)
-        .then((res) => {
-          console.log(res);
-          const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
-          enqueueSnackbar(msg, { variant: "success" });
-          dispatch(acUpdateCard());
-        })
-        .catch((err) => console.log(err));
-    }
+    ApiService.fetching("add/toCart", item)
+      .then((res) => {
+        console.log(res);
+        const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi !!!";
+        enqueueSnackbar(msg, { variant: "success" });
+        dispatch(acUpdateCard());
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -82,8 +71,7 @@ export const CatalogCard = () => {
                 >
                   -
                 </span>{" "}
-                {count ? count : "Qo'shish"}{" "}
-                <span onClick={() => addCart({ ...item, quantity: 1 })}>+</span>
+                {count ? count : "Qo'shish"} <span>+</span>
               </button>
             </figcaption>
           </figure>

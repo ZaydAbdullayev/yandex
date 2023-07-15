@@ -28,7 +28,7 @@ export const Cart = memo(() => {
 
   const countINC = (id) => {
     setCount(count + 1);
-  }; 
+  };
 
   const countDEC = (id) => {
     setCount(count > 0 ? count - 1 : 0);
@@ -47,7 +47,7 @@ export const Cart = memo(() => {
           <div className="cart_body_box last">
             {cart?.map((item) => {
               return (
-                <div className="cart_body__item" key={item.id}>
+                <div className="cart_body__item" key={item.product_id}>
                   <img src={item.img} alt="product_photo" />
                   <div className="item_info__box">
                     <div className="info">
