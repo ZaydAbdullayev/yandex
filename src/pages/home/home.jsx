@@ -21,9 +21,20 @@ export const Home = () => {
       });
   }, []);
 
-  const viewShop = () => {
-    navigate("/catalog");
+  const viewShop = (id) => {
+    navigate(`/catalog/${id}`);
   };
+
+  const restoran = restaurant.filter((item) => {
+    const value = "restaurant";
+    return item?.type?.toLowerCase().includes(value.toLowerCase());
+  });
+
+  const shop = restaurant.filter((item) => {
+    const value = "shop";
+    return item?.type?.toLowerCase().includes(value.toLowerCase());
+  });
+
   return (
     <div className="home_page">
       <div className="root">
@@ -31,16 +42,16 @@ export const Home = () => {
           <p>Offers</p>
           <button>
             {" "}
-            <Link to="/add-product" style={{ color: "#333" }}>
+            <Link to="/" style={{ color: "#333" }}>
               All
             </Link>{" "}
           </button>
         </div>
         <p className="Restaurant">Restaurant</p>
         <div className="product-card">
-          {restaurant.map((shop) => {
+          {restoran?.map((shop) => {
             return (
-              <section onClick={viewShop} key={shop.id}>
+              <section onClick={() => viewShop(shop.id)} key={shop.id}>
                 <div>
                   <button>Free dilevery</button>
                   <figure>
@@ -54,8 +65,8 @@ export const Home = () => {
                 <label>
                   <h1>{shop.name}</h1>
                   <p>
-                    <BsFillStarFill style={{ color: "#aaa" }} /> 4.7 Good (200+)
-                    $$$
+                    <BsFillStarFill style={{ color: "#aaa" }} /> 4.7 Good (
+                    {shop.rating}) $$$
                   </p>
                   <button title="Bepul yetkazib berish 10 000 sumdan boshlab istalhan yerga bepul">
                     <MdDeliveryDining /> Bepul yetkazib berish
@@ -68,7 +79,7 @@ export const Home = () => {
 
         <p className="Restaurant">Shops</p>
         <div className="product-item">
-          {restaurant.map((shop) => {
+          {shop?.map((shop) => {
             return (
               <section onClick={viewShop} key={shop.id}>
                 <div>

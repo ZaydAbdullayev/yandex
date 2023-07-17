@@ -2,25 +2,32 @@ import React, { useState, useEffect } from "react";
 import "./catalog.css";
 import { CatalogCard } from "../../components/cProductCard/cProductCard";
 import { ProductMenu } from "../../components/productMenu/productMenu";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Cart } from "../cart/cart";
 
 import main_img from "../../components/assets/images/fast_food2.jpg";
-import { MdOutlineFavoriteBorder } from "react-icons/md";
-import { MdFavorite } from "react-icons/md";
-import { BsInfoCircle } from "react-icons/bs";
-import { BsFillStarFill } from "react-icons/bs";
-import { MdOutlineAccessTimeFilled } from "react-icons/md";
+import {
+  MdOutlineFavoriteBorder,
+  MdOutlineAccessTimeFilled,
+  MdFavorite,
+} from "react-icons/md";
+import { BsInfoCircle, BsFillStarFill } from "react-icons/bs";
 import delivery from "../../components/assets/images//11146-NN5BIF.jpg";
 import { FiArrowLeft } from "react-icons/fi";
-import { Cart } from "../cart/cart";
+import { ApiGetService } from "../../services/api.service";
 
 export const Catalog = () => {
   const [favorite, setFavorite] = useState(false);
-  const query = useLocation().search.split("=")[1];
+  const [shop, setShop] = useState([]);
+  const { id } = useParams();
 
   useEffect(() => {
+    // ApiGetService.fetching(`catalog/${id}`).then((res) => {
+    //   console.log(res);
+    // });
+
     window.scrollTo(0, 0);
-  }, [query]);
+  }, [id]);
 
   const addToLike = () => {
     setFavorite((prevFavorite) => !prevFavorite);
