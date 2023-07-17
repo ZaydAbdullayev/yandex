@@ -31,10 +31,7 @@ export const CatalogCard = () => {
       .catch((err) => {
         console.log(err);
       });
-    cart.forEach((item) => {
-      setCount(item.quantity);
-    });
-  }, [cart, updateCard]);
+  }, [updateCard]);
 
   const addCart = (item) => {
     ApiService.fetching("add/toCart", item)
@@ -62,16 +59,14 @@ export const CatalogCard = () => {
                   displayType="text"
                 />
                 <span>{item.name}</span>
-                <span>{item.description}</span>
+                <span>{item?.description || ""}</span>
               </div>
               <button>
-                <span
-                  style={count ? {} : { display: "none" }}
-                  onClick={() => addCart({ ...item, quantity: -1 })}
-                >
-                  -
-                </span>{" "}
-                {count ? count : "Qo'shish"} <span>+</span>
+                <span style={count ? {} : { display: "none" }}>-</span>{" "}
+                {count ? count : "Qo'shish"}{" "}
+                <span onClick={() => addCart({ ...item, quantity: -1 })}>
+                  +
+                </span>
               </button>
             </figcaption>
           </figure>

@@ -3,18 +3,27 @@ import "./navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { acOpenMadal } from "../../redux/modal";
 
 import { IoMdPin } from "react-icons/io";
 import { BsGlobe2 } from "react-icons/bs";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { BiSearch } from "react-icons/bi";
+import default_img from "../assets/images/default-img.png";
 
 export const Navbar = () => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const login = JSON.parse(localStorage.getItem("customer")) || [];
 
   const log_in = () => {
     navigate("/signin");
+  };
+
+  const openModal = () => {
+    dispatch(acOpenMadal());
   };
 
   return (
@@ -62,9 +71,15 @@ export const Navbar = () => {
             displayType="text"
           />
         </div>
-        <button className="login_btn" type="button" onClick={log_in}>
-          login
-        </button>
+        {login.user !== [] ? (
+          <figure onClick={openModal} className="user_img">
+            <img src={default_img} alt="user_photo" />
+          </figure>
+        ) : (
+          <button className="login_btn" type="button" onClick={log_in}>
+            login
+          </button>
+        )}
       </div>
     </div>
   );

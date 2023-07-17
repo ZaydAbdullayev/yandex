@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import "./login.css";
 import { PatternFormat } from "react-number-format";
-import { acLogin, acLogout } from "../../redux/auth";
 import { NavLink, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -10,7 +9,6 @@ import { ApiService } from "../../services/api.service";
 export const Signin = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
-  const [err, setErr] = useState(false);
   const [pass, setPass] = useState({});
   const { pass1, pass2 } = pass;
 
@@ -27,11 +25,11 @@ export const Signin = () => {
     const formData = new FormData(e.target);
     const value = Object.fromEntries(formData.entries());
     value.phone = value?.phone?.split(" ")?.join("");
-    console.log(value);
     if (pass1 === pass2) {
       ApiService.fetching("register/user", value)
         .then((res) => {
-          console.log(res);
+          const user = res?.data?.data;
+          localStorage.setItem("customer", JSON.stringify(user));
           navigate("/");
         })
         .catch((err) => console.log(err));
@@ -58,7 +56,6 @@ export const Signin = () => {
             required
             autoComplete="off"
             autoCapitalize="off"
-            style={err ? { border: "2px solid tomato" } : {}}
           />
           <PatternFormat
             format="+998 ## ### ## ##"
@@ -66,7 +63,6 @@ export const Signin = () => {
             required
             name="phone"
             mask="_"
-            style={err ? { border: "2px solid tomato" } : {}}
           />
           <label>
             <input
@@ -76,7 +72,6 @@ export const Signin = () => {
               required
               autoComplete="off"
               id="fpass"
-              style={err ? { border: "2px solid tomato" } : {}}
               onChange={(e) => setPass({ ...pass, pass1: e.target.value })}
             />
             <span onClick={handleShow} style={show ? {} : { color: "orange" }}>
@@ -92,7 +87,7 @@ export const Signin = () => {
               autoComplete="off"
               id="spass"
               style={
-                err || pass1 !== pass2
+                pass1 !== pass2
                   ? { border: "2px solid tomato", color: "tomato" }
                   : {}
               }
@@ -124,7 +119,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const [err, setErr] = useState(false);
-  const [pass, setPass] = useState(null);
+  const [pass, setPass] = useState({});
   const { pass1, pass2 } = pass;
 
   const handleShow = () => {
@@ -139,16 +134,17 @@ export const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const value = Object.fromEntries(formData.entries());
-    value.phone = value?.phone?.split(" ")?.join("");
-    console.log(value);
     if (pass1 === pass2) {
       ApiService.fetching("login/users", value)
         .then((res) => {
-          console.log(res.data.data);
-          const user = res?.data?.data;
+          const user = res?.data?.innerData?.users;
           localStorage.setItem("customer", JSON.stringify(user));
+          navigate("/");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          setErr(true);
+        });
     }
   };
 
@@ -172,14 +168,6 @@ export const Login = () => {
             required
             autoComplete="off"
             autoCapitalize="off"
-            style={err ? { border: "2px solid tomato" } : {}}
-          />
-          <PatternFormat
-            format="+998 ## ### ## ##"
-            allowEmptyFormatting
-            required
-            name="phone"
-            mask="_"
             style={err ? { border: "2px solid tomato" } : {}}
           />
           <label>
@@ -216,7 +204,7 @@ export const Login = () => {
               {show ? <BsEyeSlash /> : <BsEye />}
             </span>
             {/* <p style={err ? { display: "flex" } : {}} className="failed">
-              Foydalanuvchi yoki parol xaroligi...!
+              Foydalanuvchi ismi yoki parol xaroligi...!
             </p> */}
           </label>
           <button>Yuborish</button>

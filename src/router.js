@@ -4,7 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import { Layout } from "./pages/layout/layout";
 import { Home } from "./pages/home/home";
 import { Catalog } from "./pages/catalog/catalog";
-import { Signin } from "./pages/login/login";
+import { Login, Signin } from "./pages/login/login";
 
 export const Router = () => {
   return (
@@ -14,7 +14,7 @@ export const Router = () => {
           <Route index element={<Home />} />
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/signin" element={<Signin />} />
-          <Route path="/login" element={<Signin />} />
+          <Route path="/login" element={<Login />} />
         </Route>
       </Routes>
     </>
