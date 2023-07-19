@@ -6,14 +6,19 @@ import { ApiGetService } from "../../services/api.service";
 import { useSnackbar } from "notistack";
 import { useSelector, useDispatch } from "react-redux";
 import { acUpdateCard } from "../../redux/cart";
+import { useParams } from "react-router";
 
 export const CatalogCard = () => {
+  const user = JSON.parse(localStorage.getItem("customer")) || [];
   const [product, setProduct] = useState([]);
-  const [count, setCount] = useState(false);
+  const [count, setCount] = useState(0);
   const { enqueueSnackbar } = useSnackbar();
   const [cart, setCart] = useState([]);
   const updateCard = useSelector((state) => state.updateCard);
   const dispatch = useDispatch();
+  const id = useParams().id;
+
+  console.log(id);
 
   useEffect(() => {
     ApiGetService.fetching("get/products")
@@ -34,6 +39,7 @@ export const CatalogCard = () => {
   }, [updateCard]);
 
   const addCart = (item) => {
+    console.log(item);
     ApiService.fetching("add/toCart", item)
       .then((res) => {
         console.log(res);
@@ -44,9 +50,13 @@ export const CatalogCard = () => {
       .catch((err) => console.log(err));
   };
 
+  const filtered = product.filter((item) => {
+    return item?.restaurant?.toLowerCase().includes(id.toLowerCase());
+  });
+
   return (
     <>
-      {product?.map((item) => {
+      {filtered?.map((item) => {
         return (
           <figure className="catalog_product" key={item.id}>
             <img src={item.img} alt="images" />
@@ -58,13 +68,29 @@ export const CatalogCard = () => {
                   thousandSeparator=" "
                   displayType="text"
                 />
-                <span>{item.name}</span>
+                <span style={{ textTransform: "capitalize" }}>{item.name}</span>
                 <span>{item?.description || ""}</span>
               </div>
               <button>
                 <span style={count ? {} : { display: "none" }}>-</span>{" "}
-                {count ? count : "Qo'shish"}{" "}
-                <span onClick={() => addCart({ ...item, quantity: -1 })}>
+                {count ? count : "Qo'shish"}
+                <span
+                  onClick={
+                    count
+                      ? () =>
+                          addCart({
+                            ...item,
+                            quantity: 1,
+                            user_id: user?.users?.id,
+                          })
+                      : () =>
+                          addCart({
+                            ...item,
+                            quantity: 1,
+                            user_id: user?.users?.id,
+                          })
+                  }
+                >
                   +
                 </span>
               </button>

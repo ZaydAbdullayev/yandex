@@ -6,7 +6,7 @@ const user = JSON.parse(localStorage.getItem("customer")) || [];
 const config = {
   headers: {
     Authorization: `Bearer ${user.token}`,
-    "Content-Type": "application/json; multipart/form-data",
+    "Content-Type": "multipart/form-data; application/json",
   },
 };
 

@@ -1,0 +1,232 @@
+.my_profil {
+   width: 100%;
+   padding: 0% 5% 3%;
+   border-radius: 20px;
+   overflow: hidden;
+   background: #fff;
+   z-index: -9;
+}
+
+
+ 
+/* ======== my_account ====== */
+/* ======== my_account ====== */
+ 
+.my_account {
+   width: 100%;
+   padding: 3% 5%;
+   gap: 10px;
+}
+.my_account > div > h1 {
+   font-size: 35px;
+   font-weight:  bold;
+   font-family: 'Times New Roman', Times, serif;
+
+}
+.my_account > div > p {
+   font-size: 20px;
+   font-family: 'Times New Roman', Times, serif;
+}
+.my_account > hr {
+   width: 100%;
+   height: 2px;
+   background: grey;
+   border: none;
+   margin: 1% 0;
+
+   
+}
+
+/* ======== profil_navbar ====== */
+/* ======== profil_navbar ====== */
+ 
+.profil_navbar {
+   width: 100%;
+   padding: 2% 4% 1%;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   background: grey;
+   gap: 30px;
+   
+}
+.profil_navbar >:first-child {
+   font-size: 35px ;
+   font-weight: bold;
+   color: #fff;
+   flex: 1;
+   cursor: pointer;
+}
+.profil_navbar > p {
+   font-size: 22px ;
+   font-weight: bold;
+   color: #fff;
+   cursor: pointer;
+
+}
+
+/* ======== profil_card ====== */
+/* ======== profil_card ====== */
+
+.profil_card {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 60px;
+}
+.profil_card > div {
+   max-width: calc(50% - 10%);
+   width: 100%;
+   height: 240px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   flex-direction: column;
+   background: rgba(128, 128, 128, 0.167);
+   border-radius: 15px;
+   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+}
+.profil_card > div > p {
+   font-size: 22px;
+   font-weight: bold;
+}
+.profil_card > div > form {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+  gap: 20px;
+  padding: 7%;
+}
+
+.profil_card > div > form > section {
+   width: 200px;
+   height: 30px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   flex-direction: row;
+   gap: 20px;
+}
+.profil_card > div > form > section > img{
+   width: 35px;
+   height: 35px;
+   border-radius: 50%;
+   background: none;
+   cursor: pointer;
+}
+.profil_card > div > form > section > input {
+   width: 140px;
+   height: 35px;
+   border-radius: 8px;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+   padding: 0 3%;
+   font-size: 14px;
+   font-weight: 500;
+}
+.profil_card > div > button {
+   width: 150px;
+   height: 35px;
+   background: #ff8c00;
+   border-radius: 7px;
+   border: none;
+   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+   font-weight: bold;
+   color: #ffff;
+}
+.profil_card > div > form > section > input:hover{
+   border: 1px solid #ff8c00 ;
+}
+.profil_card > div > button:active{
+   color: #7fff00;
+   background: blue;
+}
+.profil_card > div > button:hover{
+  border: 2px solid #7fff00;
+}
+.profil_card > div > section > img{
+   width: 35px;
+   height: 35px;
+   border-radius: 50%;
+   background: none;
+   cursor: pointer;
+   background: red;
+}
+.profil_card >:nth-child(2) {
+   display: flex;
+   justify-content: flex-start;
+   flex-direction: column;
+   align-items: flex-start;
+   padding: 1%;
+   gap: 30px;
+   background: none;
+   box-shadow: none;
+}
+.profil_card>:nth-child(2) > section {
+   width: 200px;
+   height: 30px;
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+   flex-direction: row;
+   gap: 10px;
+
+}
+.profil_card>:nth-child(2) > section > img {
+   width: 45px;
+   height: 45px;
+   border-radius: 50%;
+   background: none;
+   cursor: pointer;
+}
+.profil_card>:nth-child(2) > section > p {
+   font-size: 20px;
+   font-family: bold;
+}
+
+
+/* ======== profil_footer ====== */
+/* ======== profil_footer ====== */
+
+.profil_footer {
+   width: 100%;
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: flex-start;
+   align-items: center;
+   padding: 3% ;
+   padding-right: 9%;
+   gap: 40px;
+}
+.profil_footer > div {
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
+
+}
+
+.profil_footer > div > button {
+   width: 260px;
+   height: 40px;
+   border-radius: 8px;
+   background: #7fff00;
+   font-size: 20px;
+   font-weight: bold;
+   color: #ffff;
+   border: none;
+   box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+   border-bottom-left-radius: 0;
+}
+.profil_footer > div > button:hover{
+   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+   border: 1px solid #ff8c00;
+}
+
+

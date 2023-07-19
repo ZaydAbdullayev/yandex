@@ -5,7 +5,6 @@ import { ProductMenu } from "../../components/productMenu/productMenu";
 import { Link, useParams } from "react-router-dom";
 import { Cart } from "../cart/cart";
 
-import main_img from "../../components/assets/images/fast_food2.jpg";
 import {
   MdOutlineFavoriteBorder,
   MdOutlineAccessTimeFilled,
@@ -19,19 +18,44 @@ import { ApiGetService } from "../../services/api.service";
 export const Catalog = () => {
   const [favorite, setFavorite] = useState(false);
   const [shop, setShop] = useState([]);
-  const { id } = useParams();
+  const id = useParams().id;
+  const [category, setCategory] = useState([]);
+  const name = shop?.name?.split("_").join(" ");
+
+  console.log(id);
 
   useEffect(() => {
-    // ApiGetService.fetching(`catalog/${id}`).then((res) => {
-    //   console.log(res);
-    // });
-
+    ApiGetService.fetching(`get/restaurant/${id}`)
+      .then((res) => {
+        setShop(res?.data?.innerData);
+      })
+      .catch((err) => console.log(err));
     window.scrollTo(0, 0);
   }, [id]);
+
+  useEffect(() => {
+    ApiGetService.fetching("get/products")
+      .then((res) => {
+        setCategory(res?.data?.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
+
+  const categoryes = category.filter((item) => {
+    return item?.category?.toLowerCase().includes(id.toLowerCase());
+  });
+
+  console.log(category);
+
+  console.log(categoryes);
 
   const addToLike = () => {
     setFavorite((prevFavorite) => !prevFavorite);
   };
+
+  const uniqueCategories = [
+    ...new Set(categoryes.map((item) => item.category)),
+  ];
 
   return (
     <div className="catalog_box">
@@ -42,20 +66,22 @@ export const Catalog = () => {
             <FiArrowLeft /> Barcha restoranlar
           </Link>
           <ProductMenu>
-            {menuData.map((item, index) => {
-              return (
-                <Link to={`/catalogq?=${item.query}`} key={index}>
-                  {item.name}
-                </Link>
-              );
-            })}
+            {uniqueCategories.map((category, index) => (
+              <Link
+                to={`/catalog/${id}/${category}`}
+                key={index}
+                style={{ letterSpacing: "2px" }}
+              >
+                {category}
+              </Link>
+            ))}
           </ProductMenu>
         </div>
 
         {/* =========== show product section ============= */}
         <div className="product_show">
           <figure className="about_restoran">
-            <img src={main_img} alt="restotaunt_img" />
+            <img src={shop.img} alt="restotaunt_img" />
             <figcaption className="about_restoran_item">
               <span>
                 <button className="restoran_btn" onClick={addToLike}>
@@ -63,14 +89,14 @@ export const Catalog = () => {
                 </button>
               </span>
               <div className="restoran_info_box">
-                <h1>Restoran name</h1>
+                <h1 style={{ textTransform: "capitalize" }}>{name}</h1>
                 <div className="restoran_delivery">
                   <div>
                     <span>
                       <MdOutlineAccessTimeFilled />
                     </span>
                     <p>
-                      15-20
+                      {shop.delivery_time_from} - {shop.delivery_time_till}
                       <span>daqiqa</span>
                     </p>
                   </div>
@@ -80,7 +106,7 @@ export const Catalog = () => {
                     </span>
                     <p>
                       4.5
-                      <span>200+</span>
+                      <span>{shop.rating}</span>
                     </p>
                   </div>
                   <button className="restoran_btn" style={{ color: "#000" }}>
@@ -100,7 +126,7 @@ export const Catalog = () => {
           </div>
 
           <div className="restoran_product">
-            <h1>Categori</h1>
+            <h1>{uniqueCategories[0]}</h1>
             <CatalogCard />
           </div>
         </div>
@@ -112,38 +138,3 @@ export const Catalog = () => {
     </div>
   );
 };
-
-const menuData = [
-  {
-    name: "Lavash",
-    query: "lavash",
-  },
-  {
-    name: "Gamburger",
-    query: "gamburger",
-  },
-  {
-    name: "Donar",
-    query: "donar",
-  },
-  {
-    name: "Hot-Dog",
-    query: "hotdog",
-  },
-  {
-    name: "Salat",
-    query: "salat",
-  },
-  {
-    name: "Pitsa",
-    query: "pitsa",
-  },
-  {
-    name: "Shovurma",
-    query: "shourma",
-  },
-  {
-    name: "KFC",
-    query: "kfc",
-  },
-];

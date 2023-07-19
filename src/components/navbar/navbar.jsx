@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import { Link, useLocation } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
@@ -16,7 +16,11 @@ export const Navbar = () => {
   const location = useLocation().pathname;
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const login = JSON.parse(localStorage.getItem("customer")) || [];
+  const [user, setUser] = useState([]);
+
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("customer")) || []);
+  }, [location]);
 
   const log_in = () => {
     navigate("/signin");
@@ -71,7 +75,7 @@ export const Navbar = () => {
             displayType="text"
           />
         </div>
-        {login.user !== [] ? (
+        {!user.length ? (
           <figure onClick={openModal} className="user_img">
             <img src={default_img} alt="user_photo" />
           </figure>

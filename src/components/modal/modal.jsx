@@ -16,8 +16,8 @@ export const Modal = () => {
   };
 
   const log_out = () => {
-    localStorage.clear();
-    window.reload();
+    localStorage.removeItem("customer");
+    window.location.reload();
   };
 
   return (
@@ -27,14 +27,14 @@ export const Modal = () => {
     >
       <div className="modal_box">
         <div className="user">
-          <b>{user.users.username}</b>
+          <b>{user?.users?.username}</b>
           <figure>
             <img src={default_img} alt="user_photo" />
             <button onClick={closeModal}>x</button>
           </figure>
         </div>
         <ul>
-          <Link to="/">Mening profilim</Link>
+          <Link to="/my/profil">Mening profilim</Link>
           <Link to="/">Manzillarim</Link>
           <Link to="/">Buyurtlarim</Link>
           <Link to="/">Bildirishnomalar</Link>

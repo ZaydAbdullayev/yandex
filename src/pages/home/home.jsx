@@ -3,6 +3,7 @@ import "./home.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ApiGetService } from "../../services/api.service";
+import { Map } from "../../components/map/map";
 
 import { BsTaxiFrontFill, BsFillStarFill } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";
@@ -63,7 +64,9 @@ export const Home = () => {
                   </button>
                 </div>
                 <label>
-                  <h1>{shop.name}</h1>
+                  <h1 style={{ textTransform: "capitalize" }}>
+                    {shop?.name?.split("_").join(" ")}
+                  </h1>
                   <p>
                     <BsFillStarFill style={{ color: "#aaa" }} /> 4.7 Good (
                     {shop.rating}) $$$
@@ -93,7 +96,9 @@ export const Home = () => {
                   </button>
                 </div>
                 <label>
-                  <h1>{shop.name}</h1>
+                  <h1 style={{ textTransform: "capitalize" }}>
+                    {shop?.name?.split("_").join(" ")}
+                  </h1>
                   <p>
                     <BsFillStarFill style={{ color: "green" }} /> 4.7 Good
                     (200+) $$$
@@ -102,6 +107,7 @@ export const Home = () => {
               </section>
             );
           })}
+          <Map />
         </div>
 
         <p className="Restaurant">All</p>
@@ -120,7 +126,9 @@ export const Home = () => {
                   </button>
                 </div>
                 <label>
-                  <h1>{shop.name}</h1>
+                  <h1 style={{ textTransform: "capitalize" }}>
+                    {shop?.name?.split("_").join(" ")}
+                  </h1>
                   <p>
                     <BsFillStarFill style={{ color: "#fc0" }} /> 4.7 Good (200+)
                     $$$
