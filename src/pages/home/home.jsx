@@ -64,9 +64,7 @@ export const Home = () => {
                   </button>
                 </div>
                 <label>
-                  <h1 style={{ textTransform: "capitalize" }}>
-                    {shop?.name?.split("_").join(" ")}
-                  </h1>
+                  <h1>{shop?.username?.split("_").join(" ")}</h1>
                   <p>
                     <BsFillStarFill style={{ color: "#aaa" }} /> 4.7 Good (
                     {shop.rating}) $$$
@@ -97,7 +95,7 @@ export const Home = () => {
                 </div>
                 <label>
                   <h1 style={{ textTransform: "capitalize" }}>
-                    {shop?.name?.split("_").join(" ")}
+                    {shop?.username?.split("_").join(" ")}
                   </h1>
                   <p>
                     <BsFillStarFill style={{ color: "green" }} /> 4.7 Good
@@ -127,7 +125,7 @@ export const Home = () => {
                 </div>
                 <label>
                   <h1 style={{ textTransform: "capitalize" }}>
-                    {shop?.name?.split("_").join(" ")}
+                    {shop?.username?.split("_").join(" ")}
                   </h1>
                   <p>
                     <BsFillStarFill style={{ color: "#fc0" }} /> 4.7 Good (200+)

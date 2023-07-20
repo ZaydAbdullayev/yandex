@@ -30,3 +30,10 @@ export const ApiUpdateService = {
     return response;
   },
 };
+
+export const ApiDeleteService = {
+  async fetching(url, data) {
+    const response = await axios.delete(`${base_url}/${url}`, data, config);
+    return response;
+  },
+};

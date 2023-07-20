@@ -39,7 +39,7 @@ export const Map = memo(() => {
     <div className="map">
       <h1>HTML ile konum bilgisi sorgulama</h1>
 
-      <div class="esas">
+      <div className="esas">
         <p>
           <strong>Enlem:</strong> <span id="enlem">-</span>
         </p>
@@ -56,18 +56,17 @@ export const Map = memo(() => {
           src="https://www.google.com/maps?output=embed&q=Türkiye"
           width="100%"
           height="450"
-          frameborder="0"
-          allowfullscreen=""
+          allowFullScreen=""
           aria-hidden="false"
-          tabindex="0"
+          tabIndex="0"
         ></iframe>
 
-        <button onClick={konumSorgula} autofocus="true">
+        <button onClick={konumSorgula} autoFocus>
           Konumu bul
         </button>
       </div>
 
-      <div class="kutucuk">
+      <div className="kutucuk">
         <p id="durum_mesaj">Beklemede</p>
       </div>
     </div>

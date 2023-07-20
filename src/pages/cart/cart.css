@@ -46,7 +46,6 @@
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    gap: var(--gap3);
     cursor: pointer;
 }
 
@@ -100,6 +99,7 @@
     width: 29%;
     height: 69px;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .item_info__box {
@@ -137,7 +137,8 @@
 
 .count_box {
     width: 40%;
-    padding: 1% 2%;
+    height: 30px;
+    padding: 0 2%;
     display: flex;
     align-items: center;
     justify-content: space-around;

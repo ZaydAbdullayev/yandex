@@ -47,15 +47,13 @@ export const Cart = memo(() => {
           <div className="cart_body_box last">
             {cart?.map((item) => {
               return (
-                <div className="cart_body__item" key={item.product_id}>
+                <div className="cart_body__item" key={item.name}>
                   <img src={item.img} alt="product_photo" />
                   <div className="item_info__box">
                     <div className="info">
                       <p style={{ lineHeight: "1.5" }}>{item.name}</p>
                       <span>{item.description}</span>
-                      <p>
-                        {item.price} <span>• 0g</span>
-                      </p>
+                      <p>{item.price}</p>
                     </div>
                     <div className="count_box">
                       <button onClick={() => countDEC(item.id)}>-</button>
@@ -109,7 +107,7 @@ export const Cart = memo(() => {
             <BsInfoCircle />
           </label>
           <button>
-            Jami To'lov:{" "}
+            Jami to'lov:{" "}
             <NumericFormat
               value={total}
               suffix=" sum"

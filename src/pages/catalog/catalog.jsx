@@ -4,7 +4,6 @@ import { CatalogCard } from "../../components/cProductCard/cProductCard";
 import { ProductMenu } from "../../components/productMenu/productMenu";
 import { Link, useParams } from "react-router-dom";
 import { Cart } from "../cart/cart";
-
 import {
   MdOutlineFavoriteBorder,
   MdOutlineAccessTimeFilled,
@@ -20,9 +19,8 @@ export const Catalog = () => {
   const [shop, setShop] = useState([]);
   const id = useParams().id;
   const [category, setCategory] = useState([]);
-  const name = shop?.name?.split("_").join(" ");
-
-  console.log(id);
+  const name = shop?.name?.split("_").join(" ") || "";
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   useEffect(() => {
     ApiGetService.fetching(`get/restaurant/${id}`)
@@ -41,21 +39,29 @@ export const Catalog = () => {
       .catch((err) => console.log(err));
   }, []);
 
-  const categoryes = category.filter((item) => {
-    return item?.category?.toLowerCase().includes(id.toLowerCase());
-  });
+  const categoryes = category
+    ? category.filter((item) =>
+        item?.restaurant === id ? item.category : null
+      )
+    : [];
 
-  console.log(category);
+  const getUniqueCategories = () => {
+    const uniqueCategories = new Set();
+    categoryes.forEach((item) => {
+      uniqueCategories.add(item.category);
+    });
+    return Array.from(uniqueCategories);
+  };
 
-  console.log(categoryes);
+  const uniqueCategories = getUniqueCategories();
 
   const addToLike = () => {
     setFavorite((prevFavorite) => !prevFavorite);
   };
 
-  const uniqueCategories = [
-    ...new Set(categoryes.map((item) => item.category)),
-  ];
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
 
   return (
     <div className="catalog_box">
@@ -71,6 +77,8 @@ export const Catalog = () => {
                 to={`/catalog/${id}/${category}`}
                 key={index}
                 style={{ letterSpacing: "2px" }}
+                onClick={() => handleCategoryClick(category)}
+                className={selectedCategory === category ? "active" : ""}
               >
                 {category}
               </Link>
@@ -80,7 +88,7 @@ export const Catalog = () => {
 
         {/* =========== show product section ============= */}
         <div className="product_show">
-          <figure className="about_restoran">
+          <figure className="about_restoran" key={id}>
             <img src={shop.img} alt="restotaunt_img" />
             <figcaption className="about_restoran_item">
               <span>
@@ -89,7 +97,7 @@ export const Catalog = () => {
                 </button>
               </span>
               <div className="restoran_info_box">
-                <h1 style={{ textTransform: "capitalize" }}>{name}</h1>
+                <h1>{name}</h1>
                 <div className="restoran_delivery">
                   <div>
                     <span>
@@ -126,7 +134,7 @@ export const Catalog = () => {
           </div>
 
           <div className="restoran_product">
-            <h1>{uniqueCategories[0]}</h1>
+            <h1>{selectedCategory}</h1>
             <CatalogCard />
           </div>
         </div>
