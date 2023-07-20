@@ -28,7 +28,7 @@ export const Signin = () => {
     if (pass1 === pass2) {
       ApiService.fetching("register/user", value)
         .then((res) => {
-          const user = res?.data?.data;
+          const user = res?.data?.innerData?.users;
           localStorage.setItem("customer", JSON.stringify(user));
           navigate("/");
         })
