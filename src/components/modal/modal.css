@@ -94,6 +94,6 @@ li {
 }
 
 .modal_box>ul>li:hover,
-.modal_box>a:hover {
+.modal_box>ul>a:hover {
     background: #adb5b880;
 }
