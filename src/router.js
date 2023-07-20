@@ -6,6 +6,7 @@ import { Home } from "./pages/home/home";
 import { Catalog } from "./pages/catalog/catalog";
 import { Login, Signin } from "./pages/login/login";
 import { MyProfil } from "./pages/myProfil/profil";
+import { MyFavorite } from "./pages/myFavorite/favorite.jsx";
 
 export const Router = () => {
   return (
@@ -15,6 +16,7 @@ export const Router = () => {
           <Route index element={<Home />} />
           <Route path="/catalog/:id" element={<Catalog />} />
           <Route path="/my/profil" element={<MyProfil />} />
+          <Route path="/my/favourite" element={<MyFavorite />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
         </Route>
