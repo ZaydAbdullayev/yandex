@@ -33,7 +33,7 @@ export const Map = memo(() => {
     console.log(hata);
   }
 
-  //console.log(navigator);
+  // console.log(navigator);
 
   return (
     <div className="map">
@@ -53,7 +53,7 @@ export const Map = memo(() => {
         <iframe
           id="harita"
           title="cordinate"
-          src="https://www.google.com/maps?output=embed&q=Türkiye"
+          src="https://www.google.com/maps?output=embed&q=Namangan"
           width="100%"
           height="450"
           allowFullScreen=""
@@ -61,9 +61,7 @@ export const Map = memo(() => {
           tabIndex="0"
         ></iframe>
 
-        <button onClick={konumSorgula} autoFocus>
-          Konumu bul
-        </button>
+        <button onClick={konumSorgula}>Konumu bul</button>
       </div>
 
       <div className="kutucuk">

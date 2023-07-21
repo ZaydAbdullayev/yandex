@@ -26,6 +26,10 @@
     letter-spacing: 0.05rem;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     width: 100%;
     background: #f5f4f2;
@@ -42,8 +46,6 @@ button {
 #root {
     max-width: 1440px;
     width: 100%;
-
-
 }
 
 input {

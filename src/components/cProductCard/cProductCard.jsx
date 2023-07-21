@@ -10,16 +10,16 @@ import {
 import { useSnackbar } from "notistack";
 import { useSelector, useDispatch } from "react-redux";
 import { acUpdateCard } from "../../redux/cart";
-import { useParams } from "react-router";
+import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 
-export const CatalogCard = () => {
+export const CatalogCard = ({ restaurantId, category }) => {
   const user = JSON.parse(localStorage.getItem("customer")) || [];
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const updateCard = useSelector((state) => state.updateCard);
   const dispatch = useDispatch();
-  const id = useParams().id;
   const { enqueueSnackbar } = useSnackbar();
+  const [favorite, setFavorite] = useState(false);
 
   const user_id = user?.users?.id;
 
@@ -70,8 +70,15 @@ export const CatalogCard = () => {
     }
   };
 
+  const addToLike = (id) => {
+    setFavorite(id);
+  };
+
   const filtered = product.filter((item) => {
-    return item?.restaurant?.toLowerCase().includes(id.toLowerCase());
+    return (
+      item?.restaurant?.toLowerCase().includes(restaurantId.toLowerCase()) &&
+      item.category === category
+    );
   });
 
   return (
@@ -98,36 +105,56 @@ export const CatalogCard = () => {
                 <span style={{ textTransform: "capitalize" }}>{item.name}</span>
                 <span>{item?.description || ""}</span>
               </div>
-              <div className="btn_box">
-                {quantity > 0 && (
-                  <span
+              {existingCartItem ? (
+                <div className="btn_box">
+                  {quantity > 0 && (
+                    <span
+                      className="span"
+                      onClick={() =>
+                        updateCart({ quantity: quantity - 1, id: item.id })
+                      }
+                    >
+                      -
+                    </span>
+                  )}
+                  <button>{quantity > 0 ? quantity : "Qo'shish +"} </button>
+                  {quantity > 0 && (
+                    <span
+                      className="span"
+                      onClick={() =>
+                        updateCart({ quantity: quantity + 1, id: item.id })
+                      }
+                    >
+                      +
+                    </span>
+                  )}
+                </div>
+              ) : (
+                <div
+                  className="btn_box"
+                  style={existingCartItem ? {} : { justifyContent: "center" }}
+                >
+                  <button
                     onClick={() =>
-                      updateCart({ quantity: quantity - 1, id: item.id })
+                      addToCart({
+                        ...item,
+                        quantity: 1,
+                        user_id: user_id,
+                      })
                     }
                   >
-                    -
-                  </span>
-                )}
-                <button
-                  onClick={() =>
-                    addToCart({
-                      ...item,
-                      quantity: 1,
-                      user_id: user_id,
-                    })
-                  }
-                >
-                  {quantity > 0 ? quantity : "Qo'shish"}{" "}
-                </button>
-                <span
-                  onClick={() =>
-                    updateCart({ quantity: quantity + 1, id: item.id })
-                  }
-                >
-                  +
-                </span>
-              </div>
+                    {quantity > 0 ? quantity : "Qo'shish +"}{" "}
+                  </button>
+                </div>
+              )}
             </figcaption>
+            <button className="like_btn" onClick={() => addToLike(item.id)}>
+              {favorite === item.id ? (
+                <MdFavorite />
+              ) : (
+                <MdOutlineFavoriteBorder />
+              )}
+            </button>
           </figure>
         );
       })}

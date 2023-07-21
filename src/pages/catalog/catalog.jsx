@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import "./catalog.css";
 import { CatalogCard } from "../../components/cProductCard/cProductCard";
 import { ProductMenu } from "../../components/productMenu/productMenu";
@@ -72,16 +72,18 @@ export const Catalog = () => {
             <FiArrowLeft /> Barcha restoranlar
           </Link>
           <ProductMenu>
-            {uniqueCategories.map((category, index) => (
-              <Link
-                to={`/catalog/${id}/${category}`}
-                key={index}
+            {uniqueCategories.map((category) => (
+              <a
+                href={`#${category}`}
+                key={category}
                 style={{ letterSpacing: "2px" }}
                 onClick={() => handleCategoryClick(category)}
-                className={selectedCategory === category ? "active" : ""}
+                className={
+                  selectedCategory === category ? "active_category" : ""
+                }
               >
                 {category}
-              </Link>
+              </a>
             ))}
           </ProductMenu>
         </div>
@@ -134,8 +136,19 @@ export const Catalog = () => {
           </div>
 
           <div className="restoran_product">
-            <h1>{selectedCategory}</h1>
-            <CatalogCard />
+            {uniqueCategories.map((category) => (
+              <Fragment key={category}>
+                <h1
+                  id={category}
+                  style={
+                    selectedCategory === category ? { paddingTop: "15%" } : {}
+                  }
+                >
+                  {category}
+                </h1>
+                <CatalogCard restaurantId={id} category={category} />
+              </Fragment>
+            ))}
           </div>
         </div>
         {/* =============== basket section =========== */}

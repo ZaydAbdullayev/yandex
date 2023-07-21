@@ -1,4 +1,5 @@
 .catalog_product {
+    position: relative;
     width: calc(33% - 5px);
     padding: 1.5%;
     height: 380px;
@@ -50,28 +51,49 @@
 
 .btn_box {
     width: 100%;
-    height: 45px;
-    padding: 5% 0%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     background: #eee;
     border: none;
     border-radius: 15px;
     font-size: var(--fs5);
     gap: 10px;
     cursor: pointer;
+    overflow: hidden;
 }
 
 .btn_box>button {
+    padding: 6.5%;
     border: none;
     background: none;
 }
 
 .btn_box>span {
+    padding: 4% 0;
     font-size: var(--fs4);
+    inline-size: calc(100% / 3);
+    height: 100%;
+    text-align: center;
+    user-select: none;
 }
 
-.btn_box>span:active {
-    background: #3339;
+.btn_box>:first-child:active {
+    background: linear-gradient(to left, #eee, #ddd, #ddd);
+}
+
+.btn_box>:last-child:active {
+    background: linear-gradient(to right, #eee, #ddd, #ddd);
+}
+
+.like_btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 2.3% 3% 0;
+    border: none;
+    background: #eee;
+    border-radius: 15px;
+    font-size: var(--fs4);
+    color: #ae2209;
 }
