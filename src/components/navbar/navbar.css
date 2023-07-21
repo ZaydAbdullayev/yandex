@@ -6,7 +6,8 @@
 }
 
 .navbar,
-.catalog_navbar {
+.catalog_navbar,
+.payment_navbar {
     max-width: 1440px;
     width: 100%;
     padding: var(--pd1);
@@ -23,7 +24,7 @@
 }
 
 .navbar,
-.catalog_navbar>:first-child {
+.catalog_navbar .left_nav {
     display: flex;
     align-items: center;
     gap: var(--gap2);
@@ -42,6 +43,30 @@
 
 .catalog_navbar .login_btn {
     background: #ccc;
+}
+
+.payment_navbar {
+    justify-content: space-between;
+    background: #F5F4F2;
+}
+
+.payment_navbar .left_nav {
+    flex: none;
+}
+
+.payment_navbar>:first-child {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: var(--fs8);
+    color: #aaa;
+}
+
+.payment_navbar .search_box,
+.payment_navbar .location,
+.payment_navbar .language,
+.payment_navbar .card {
+    display: none;
 }
 
 

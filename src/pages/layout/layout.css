@@ -18,8 +18,9 @@
 .layout>main {
     padding-top: 6.1%;
     width: 100%;
+    min-height: 80vh;
 }
 
-.layout>footer{
+.layout>footer {
     width: 100%;
 }

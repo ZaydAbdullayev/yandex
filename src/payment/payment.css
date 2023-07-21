@@ -1,0 +1,4 @@
+.payment_box {
+    widows: 100%;
+    padding: var(--pd3);
+}

@@ -11,6 +11,7 @@ import { BsGlobe2 } from "react-icons/bs";
 import { IoFastFoodSharp } from "react-icons/io5";
 import { BiSearch } from "react-icons/bi";
 import default_img from "../assets/images/default-img.png";
+import { FiArrowLeft } from "react-icons/fi";
 
 export const Navbar = () => {
   const location = useLocation().pathname;
@@ -20,7 +21,7 @@ export const Navbar = () => {
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("customer")) || []);
-  }, [location]);
+  }, []);
 
   const log_in = () => {
     navigate("/signin");
@@ -32,7 +33,18 @@ export const Navbar = () => {
 
   return (
     <div className="navbar_box">
-      <div className={location === "/" ? "navbar" : "catalog_navbar"}>
+      <div
+        className={
+          location === "/"
+            ? "navbar"
+            : location !== "/payment"
+            ? "catalog_navbar"
+            : "payment_navbar"
+        }
+      >
+        <span style={location !== "/payment" ? { display: "none" } : {}}>
+          <FiArrowLeft /> Orqaga
+        </span>
         <div className="left_nav">
           <Link to="/">Yandex@Eat</Link>
           <form className="search_box">
@@ -45,7 +57,7 @@ export const Navbar = () => {
               name="search"
               placeholder="Restoran, Taom yoki mahsulot"
             />
-            <button>Topish</button>
+            <button type="submit">Topish</button>
           </form>
           <label className="location">
             <span className="icon">
@@ -53,6 +65,7 @@ export const Navbar = () => {
             </span>
             <select name="location">
               <option value="boburshox">Boburshox</option>
+              {/* Diğer seçenekler eklenebilir */}
             </select>
           </label>
         </div>
@@ -60,8 +73,9 @@ export const Navbar = () => {
           <span className="icon">
             <BsGlobe2 />
           </span>
-          <select name="languge">
+          <select name="language">
             <option value="en">English</option>
+            {/* Diğer diller eklenebilir */}
           </select>
         </label>
         <div className="card">
@@ -81,7 +95,7 @@ export const Navbar = () => {
           </figure>
         ) : (
           <button className="login_btn" type="button" onClick={log_in}>
-            login
+            Login
           </button>
         )}
       </div>

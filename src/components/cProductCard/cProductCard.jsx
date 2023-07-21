@@ -42,7 +42,6 @@ export const CatalogCard = ({ restaurantId, category }) => {
   }, [updateCard]);
 
   const addToCart = (item) => {
-    console.log(item);
     ApiService.fetching("add/toCart", item)
       .then((res) => {
         const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi!";

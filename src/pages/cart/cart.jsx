@@ -3,16 +3,23 @@ import "./cart.css";
 import { ApiGetService } from "../../services/api.service";
 import { NumericFormat } from "react-number-format";
 import { CalculateTotalPrice } from "../../services/calc.service";
+import { useSelector, useDispatch } from "react-redux";
+import { ApiUpdateService, ApiDeleteService } from "../../services/api.service";
+import { acUpdateCard } from "../../redux/cart";
+import { useNavigate } from "react-router-dom";
 
 import empty from "../../components/assets/images/empty-cart.gif";
 import { BsTaxiFrontFill, BsTaxiFront, BsInfoCircle } from "react-icons/bs";
-import { useSelector } from "react-redux";
 
 export const Cart = memo(() => {
+  const user = JSON.parse(localStorage.getItem("customer")) || [];
   const [cart, setCart] = useState([]);
-  const [count, setCount] = useState(0);
   const [total, setTotal] = useState(0);
   const updateCard = useSelector((state) => state.updateCard);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const user_id = user?.users?.id;
 
   useEffect(() => {
     ApiGetService.fetching("cart/get/products")
@@ -26,12 +33,27 @@ export const Cart = memo(() => {
       });
   }, [updateCard]);
 
-  const countINC = (id) => {
-    setCount(count + 1);
+  const updateCart = (item) => {
+    if (item.quantity > 0) {
+      ApiUpdateService.fetching(`update/cart/${user_id}/${item.id}`, item)
+        .then((res) => {
+          console.log(res);
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    } else {
+      ApiDeleteService.fetching(`remove/cartItem/${user_id}/${item.id}`)
+        .then((res) => {
+          console.log(res);
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    }
   };
 
-  const countDEC = (id) => {
-    setCount(count > 0 ? count - 1 : 0);
+  const payment = (data) => {
+    console.log(data);
+    navigate("/payment");
   };
 
   return (
@@ -56,9 +78,27 @@ export const Cart = memo(() => {
                       <p>{item.price}</p>
                     </div>
                     <div className="count_box">
-                      <button onClick={() => countDEC(item.id)}>-</button>
+                      <button
+                        onClick={() =>
+                          updateCart({
+                            quantity: item.quantity - 1,
+                            id: item.id,
+                          })
+                        }
+                      >
+                        -
+                      </button>
                       <span>{item.quantity}</span>
-                      <button onClick={() => countINC(item.id)}>+</button>
+                      <button
+                        onClick={() =>
+                          updateCart({
+                            quantity: item.quantity + 1,
+                            id: item.id,
+                          })
+                        }
+                      >
+                        +
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -106,7 +146,7 @@ export const Cart = memo(() => {
             </p>
             <BsInfoCircle />
           </label>
-          <button>
+          <button onClick={() => payment({ data: cart })}>
             Jami to'lov:{" "}
             <NumericFormat
               value={total}
