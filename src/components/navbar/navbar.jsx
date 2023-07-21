@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./navbar.css";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
-import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { acOpenMadal } from "../../redux/modal";
 
@@ -31,6 +30,10 @@ export const Navbar = () => {
     dispatch(acOpenMadal());
   };
 
+  const backWord = () => {
+    navigate(-1);
+  };
+
   return (
     <div className="navbar_box">
       <div
@@ -42,11 +45,18 @@ export const Navbar = () => {
             : "payment_navbar"
         }
       >
-        <span style={location !== "/payment" ? { display: "none" } : {}}>
+        <span
+          style={
+            location !== "/payment"
+              ? { display: "none" }
+              : { cursor: "pointer" }
+          }
+          onClick={backWord}
+        >
           <FiArrowLeft /> Orqaga
         </span>
         <div className="left_nav">
-          <Link to="/">Yandex@Eat</Link>
+          <Link to="/">Foodify.eats</Link>
           <form className="search_box">
             <span className="icon">
               <BiSearch />
