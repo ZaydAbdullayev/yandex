@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import "./payment.css";
 
 export const Payment = () => {
-  const [write, setWrite] = useState(0); // Change the initial state to 0
+  const [write, setWrite] = useState(0); 
 
   const toWrite = (item) => {
-    setWrite(item); // Update the state with the new value
+    setWrite(item); 
   };
 
   return (

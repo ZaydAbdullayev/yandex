@@ -1,10 +1,13 @@
 import React, { memo, useState, useEffect } from "react";
 import "./cart.css";
-import { ApiGetService } from "../../services/api.service";
 import { NumericFormat } from "react-number-format";
 import { CalculateTotalPrice } from "../../services/calc.service";
 import { useSelector, useDispatch } from "react-redux";
-import { ApiUpdateService, ApiDeleteService } from "../../services/api.service";
+import {
+  ApiUpdateService,
+  ApiDeleteService,
+  ApiGetService,
+} from "../../services/api.service";
 import { acUpdateCard } from "../../redux/cart";
 import { useNavigate } from "react-router-dom";
 
@@ -56,12 +59,25 @@ export const Cart = memo(() => {
     navigate("/payment");
   };
 
+  const handleDelCart = () => {
+    const confirm = window.confirm("Cart tozalansinmi");
+
+    if (confirm) {
+      ApiDeleteService.fetching(`empty/cart/${user_id}`)
+        .then((res) => {
+          console.log(res);
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    }
+  };
+
   return (
     <div className="cart_box">
       <div className="cart_show_product">
         <div>
           <p>Savat</p>
-          <button>tozalash</button>
+          <button onClick={handleDelCart}>tozalash</button>
         </div>
 
         {/* =========== Cart body section ======= */}

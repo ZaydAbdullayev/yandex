@@ -12,15 +12,17 @@ import {
 import { BsInfoCircle, BsFillStarFill } from "react-icons/bs";
 import delivery from "../../components/assets/images//11146-NN5BIF.jpg";
 import { FiArrowLeft } from "react-icons/fi";
-import { ApiGetService } from "../../services/api.service";
+import { ApiGetService, ApiService } from "../../services/api.service";
 
 export const Catalog = () => {
+  const user = JSON.parse(localStorage.getItem("customer")) || [];
   const [favorite, setFavorite] = useState(false);
   const [shop, setShop] = useState([]);
   const id = useParams().id;
   const [category, setCategory] = useState([]);
-  const name = shop?.name?.split("_").join(" ") || "";
+  const name = shop?.username?.split("_").join(" ");
   const [selectedCategory, setSelectedCategory] = useState("");
+  const user_id = user?.users?.id;
 
   useEffect(() => {
     ApiGetService.fetching(`get/restaurant/${id}`)
@@ -55,8 +57,14 @@ export const Catalog = () => {
 
   const uniqueCategories = getUniqueCategories();
 
-  const addToLike = () => {
+  const addToLike = (shop) => {
     setFavorite((prevFavorite) => !prevFavorite);
+    console.log(shop);
+    ApiService.fetching("add/toFavorites", shop)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   const handleCategoryClick = (category) => {
@@ -94,7 +102,19 @@ export const Catalog = () => {
             <img src={shop.img} alt="restotaunt_img" />
             <figcaption className="about_restoran_item">
               <span>
-                <button className="restoran_btn" onClick={addToLike}>
+                <button
+                  className="restoran_btn"
+                  onClick={() =>
+                    addToLike({
+                      id: id,
+                      state: 1,
+                      username: name,
+                      user_id: user_id,
+                      rating: shop?.rating,
+                      img: shop?.img,
+                    })
+                  }
+                >
                   {favorite ? <MdFavorite /> : <MdOutlineFavoriteBorder />}
                 </button>
               </span>

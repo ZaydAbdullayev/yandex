@@ -106,6 +106,8 @@
     transition: all 0.9s ease;
 }
 
+.place_information>label>input:focus
+
 .write {
     font-size: var(--fs7);
 }
