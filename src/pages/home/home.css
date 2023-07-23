@@ -2,8 +2,7 @@
     max-width: 1440px;
     width: 100%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    place-items: center;
     background: #fff;
 
 }
@@ -15,7 +14,6 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    scroll-behavior: smooth;
     padding: 5% 10%;
     gap: var(--gap2);
 
@@ -126,7 +124,6 @@
     position: absolute;
     top: 0;
     left: 0;
-    object-fit: cover;
 }
 
 .product-card>section>label>h1 {
@@ -200,4 +197,3 @@
     font-size: var(--fs6);
     line-height: 2;
 }
-

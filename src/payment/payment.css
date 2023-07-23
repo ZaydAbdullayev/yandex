@@ -3,6 +3,7 @@
     padding: var(--pd5);
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
     row-gap: var(--gap3);
     column-gap: 50px;
 }
@@ -23,7 +24,8 @@
     border-radius: 30px;
 }
 
-.delivery_sharts {
+.delivery_condition,
+.your_orders {
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -31,7 +33,7 @@
     font-size: var(--fs5);
 }
 
-.delivery_sharts>p {
+.delivery_condition>p {
     font-size: var(--fs4);
 }
 
@@ -67,6 +69,8 @@
 
 .user_location {
     width: 100%;
+    display: flex;
+    align-items: center;
 }
 
 .user_location>select,
@@ -106,7 +110,9 @@
     transition: all 0.9s ease;
 }
 
-.place_information>label>input:focus
+.place_information>label>input:focus {
+    height: 100%;
+}
 
 .write {
     font-size: var(--fs7);
@@ -140,4 +146,104 @@
     font-weight: bold;
     color: #ac0;
     background-color: #f0f0f0;
+}
+
+/* =============== order section ================ */
+.left_section {
+    width: calc(45% - 25px);
+    display: flex;
+    flex-direction: column;
+    gap: var(--gap1);
+
+}
+
+.your_orders {
+    width: 100%;
+    min-height: 410px;
+    display: flex;
+    flex-direction: column;
+    padding: 3% 5%;
+    background: #fff;
+    border-radius: 30px;
+}
+
+.your_orders>p {
+    font-size: var(--fs4);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: #333;
+    gap: var(--gap4);
+}
+
+.your_orders>p>span {
+    color: #b12810;
+    cursor: pointer;
+}
+
+
+/* ================== payment cart product section =================== */
+.payment_body {
+    justify-content: space-between;
+    border: none;
+    padding: 2% 0;
+}
+
+.payment_info_box {
+    width: 45%;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--gap3);
+}
+
+.payment_info_box>img {
+    height: 100%;
+    width: 80px;
+    border-radius: 18px;
+}
+
+.payment_info_box>label {
+    width: calc(100% - 95px);
+    font-size: var(--fs5);
+    color: #333;
+}
+
+.payment_info_box>label>span {
+    font-size: var(--fs6);
+    color: #aaa;
+}
+
+/* ================ payment count controller ============== */
+.payment_count_box {
+    width: 40%;
+    display: flex;
+    align-items: center;
+    gap: var(--gap3);
+    color: #333;
+}
+
+.payment_count_box>p {
+    font-weight: 600;
+}
+
+.payment_count_box>button {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    place-items: center;
+    border: none;
+    background: #eee;
+    font-size: var(--fs4);
+    border-radius: 10px;
+}
+
+/* ============= total price ================ */
+.total_price {
+    inline-size: 100%;
+    font-size: var(--fs4);
+    padding-top: 2%;
+    border-top: 1px solid #eee;
 }

@@ -5,8 +5,7 @@
     right: 0;
     top: 0;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    place-items: center;
     background: transparent;
     z-index: 99999;
     transition: all 0.5s ease;
@@ -54,7 +53,6 @@
 
 .user>figure>img {
     width: 35px;
-    object-fit: cover;
     border-radius: 50%;
     filter: invert(10%) sepia(2%) saturate(30%) hue-rotate(338deg) brightness(96%) contrast(86%);
 }

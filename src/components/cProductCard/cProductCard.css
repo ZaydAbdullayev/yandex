@@ -13,7 +13,6 @@
 .catalog_product>img {
     width: 100%;
     height: calc(100% - 40%);
-    object-fit: cover;
     object-position: center;
     border-radius: 15px;
 }

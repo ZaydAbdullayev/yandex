@@ -25,7 +25,7 @@ export const Cart = memo(() => {
   const user_id = user?.users?.id;
 
   useEffect(() => {
-    ApiGetService.fetching("cart/get/products")
+    ApiGetService.fetching(`cart/get/products/${user_id}`)
       .then((res) => {
         setCart(res?.data?.data);
         const total_price = CalculateTotalPrice(res?.data?.data);
@@ -34,7 +34,7 @@ export const Cart = memo(() => {
       .catch((err) => {
         console.log(err);
       });
-  }, [updateCard]);
+  }, [updateCard, user_id]);
 
   const updateCart = (item) => {
     if (item.quantity > 0) {

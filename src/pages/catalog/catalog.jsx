@@ -58,11 +58,10 @@ export const Catalog = () => {
   const uniqueCategories = getUniqueCategories();
 
   const addToLike = (shop) => {
-    setFavorite((prevFavorite) => !prevFavorite);
-    console.log(shop);
     ApiService.fetching("add/toFavorites", shop)
       .then((res) => {
         console.log(res);
+        setFavorite(true);
       })
       .catch((err) => console.log(err));
   };

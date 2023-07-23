@@ -105,7 +105,7 @@ export const Home = () => {
               </section>
             );
           })}
-          <Map />
+          {/* <Map /> */}
         </div>
 
         <p className="Restaurant">All</p>
