@@ -160,7 +160,7 @@ export const Catalog = () => {
                 <h1
                   id={category}
                   style={
-                    selectedCategory === category ? { paddingTop: "15%" } : {}
+                    selectedCategory === category ? { } : {}
                   }
                 >
                   {category}

@@ -32,9 +32,9 @@ export const Payment = () => {
   const dispatch = useDispatch();
   const user_id = user?.users?.id;
 
-  const productInfo = cart.map(({ id, quantity }) => `${quantity}_${id}`);
+  const productInfo = cart?.map(({ id, quantity }) => `${quantity}_${id}`);
 
-  const payment_data = {
+  const payment_data = JSON.stringify({
     address: adress_info,
     product_data: productInfo,
     payment: "token",
@@ -44,7 +44,7 @@ export const Payment = () => {
       latitude: "4567584985784938574934857",
       longitude: "4567584985784938574934857",
     },
-  };
+  });
   console.log(payment_data);
 
   useEffect(() => {

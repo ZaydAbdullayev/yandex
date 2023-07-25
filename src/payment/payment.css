@@ -288,12 +288,15 @@
 /* =============== app item ================= */
 .payment_body2 {
     width: 100%;
+    padding: 2% 7%;
     display: flex;
+    align-content: center;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 .app_item {
-    width: 50%;
+    width: calc(50% - 25px);
     height: 250px;
     border: 1px solid #eee;
     display: flex;
@@ -305,12 +308,13 @@
 
 .app_item>img {
     width: 50%;
+    height: 50%;
     object-fit: contain;
     background: inherit;
 }
 
 .app_item>p {
-    margin-top: -10%;
+    margin-top: -20%;
     inline-size: 100%;
     text-align: center;
 }
