@@ -137,7 +137,8 @@ export const Login = () => {
     if (pass1 === pass2) {
       ApiService.fetching("login/users", value)
         .then((res) => {
-          const user = res?.data?.innerData?.users;
+          console.log(res?.data);
+          const user = res?.data?.users;
           localStorage.setItem("customer", JSON.stringify(user));
           navigate("/");
         })

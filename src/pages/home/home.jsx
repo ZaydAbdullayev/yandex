@@ -66,8 +66,23 @@ export const Home = () => {
                 <label>
                   <h1>{shop?.username?.split("_").join(" ")}</h1>
                   <p>
-                    <BsFillStarFill style={{ color: "#aaa" }} /> 4.7 Good (
-                    {shop.rating}) $$$
+                    <BsFillStarFill
+                      style={
+                        shop.rating >= 5
+                          ? { color: "#15a302" }
+                          : shop.rating >= 3
+                          ? { color: "#fc0" }
+                          : { color: "#aaa" }
+                      }
+                    />{" "}
+                    {shop.rating}{" "}
+                    {shop.rating >= 5
+                      ? "Zo'r"
+                      : shop.rating >= 3
+                      ? "Yaxshi"
+                      : "Baholar kam"}{" "}
+                    (200){" "}
+                    {shop.rating >= 5 ? "$$$" : shop.rating >= 3 ? "$$" : "$"}
                   </p>
                   <button title="Bepul yetkazib berish 10 000 sumdan boshlab istalhan yerga bepul">
                     <MdDeliveryDining /> Bepul yetkazib berish
@@ -98,8 +113,23 @@ export const Home = () => {
                     {shop?.username?.split("_").join(" ")}
                   </h1>
                   <p>
-                    <BsFillStarFill style={{ color: "green" }} /> 4.7 Good
-                    (200+) $$$
+                    <BsFillStarFill
+                      style={
+                        shop.rating >= 5
+                          ? { color: "#15a302" }
+                          : shop.rating >= 3
+                          ? { color: "#fc0" }
+                          : { color: "#aaa" }
+                      }
+                    />{" "}
+                    {shop.rating}{" "}
+                    {shop.rating >= 4.8
+                      ? "Zo'r"
+                      : shop.rating >= 3
+                      ? "Yaxshi"
+                      : "Baholar kam"}{" "}
+                    (200){" "}
+                    {shop.rating >= 5 ? "$$$" : shop.rating >= 3 ? "$$" : "$"}
                   </p>
                 </label>
               </section>
@@ -128,8 +158,23 @@ export const Home = () => {
                     {shop?.username?.split("_").join(" ")}
                   </h1>
                   <p>
-                    <BsFillStarFill style={{ color: "#fc0" }} /> 4.7 Good (200+)
-                    $$$
+                    <BsFillStarFill
+                      style={
+                        shop.rating >= 5
+                          ? { color: "#15a302" }
+                          : shop.rating >= 3
+                          ? { color: "#fc0" }
+                          : { color: "#aaa" }
+                      }
+                    />{" "}
+                    {shop.rating}{" "}
+                    {shop.rating >= 5
+                      ? "Zo'r"
+                      : shop.rating >= 3
+                      ? "Yaxshi"
+                      : "Baholar kam"}{" "}
+                    (200){" "}
+                    {shop.rating >= 5 ? "$$$" : shop.rating >= 3 ? "$$" : "$"}
                   </p>
                   <button>
                     <MdDeliveryDining /> Bepul yetkazib berish

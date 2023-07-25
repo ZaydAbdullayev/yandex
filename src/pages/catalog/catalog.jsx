@@ -134,8 +134,8 @@ export const Catalog = () => {
                       <BsFillStarFill />
                     </span>
                     <p>
-                      4.5
-                      <span>{shop.rating}</span>
+                      {shop.rating}
+                      <span>4.5</span>
                     </p>
                   </div>
                   <button className="restoran_btn" style={{ color: "#000" }}>

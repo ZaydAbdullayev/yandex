@@ -1,11 +1,11 @@
 import axios from "axios";
 
 const base_url = "https://yandex.sp-school58.uz";
-const user = JSON.parse(localStorage.getItem("customer")) || [];
+const user = JSON?.parse(localStorage.getItem("customer")) || [];
 
 const config = {
   headers: {
-    Authorization: `Bearer ${user.token}`,
+    Authorization: `Bearer ${user?.token}`,
     "Content-Type": "multipart/form-data; application/json",
   },
 };

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
 import "./cProductCard.css";
 import { NumericFormat } from "react-number-format";
 import {
@@ -18,10 +18,11 @@ export const CatalogCard = ({ restaurantId, category }) => {
   const [cart, setCart] = useState([]);
   const updateCard = useSelector((state) => state.updateCard);
   const dispatch = useDispatch();
-  const { enqueueSnackbar } = useSnackbar();
   const [favorite, setFavorite] = useState(false);
-
+  const { enqueueSnackbar } = useSnackbar();
   const user_id = user?.users?.id;
+
+  console.log(cart);
 
   useEffect(() => {
     ApiGetService.fetching("get/products")
@@ -32,14 +33,14 @@ export const CatalogCard = ({ restaurantId, category }) => {
   }, [updateCard]);
 
   useEffect(() => {
-    ApiGetService.fetching("cart/get/products")
+    ApiGetService.fetching(`cart/get/products/${user_id}`)
       .then((res) => {
         setCart(res?.data?.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [updateCard]);
+  }, [updateCard, user_id]);
 
   const addToCart = (item) => {
     ApiService.fetching("add/toCart", item)
@@ -70,7 +71,7 @@ export const CatalogCard = ({ restaurantId, category }) => {
   };
 
   const addToLike = (id) => {
-    setFavorite(id);
+    setFavorite((prevState) => (prevState === id ? !prevState : id));
   };
 
   const filtered = product.filter((item) => {
@@ -84,10 +85,10 @@ export const CatalogCard = ({ restaurantId, category }) => {
     <>
       {filtered?.map((item) => {
         const existingCartItem = cart?.find(
-          (cartItem) => cartItem.id === item.id
+          (cartItem) => cartItem?.id === item.id
         );
         const quantity = existingCartItem
-          ? existingCartItem.quantity
+          ? existingCartItem?.quantity
           : "Qo'shish";
 
         return (
@@ -113,10 +114,10 @@ export const CatalogCard = ({ restaurantId, category }) => {
                         updateCart({ quantity: quantity - 1, id: item.id })
                       }
                     >
-                      -
+                      –
                     </span>
                   )}
-                  <button>{quantity > 0 ? quantity : "Qo'shish +"} </button>
+                  <button>{quantity} </button>
                   {quantity > 0 && (
                     <span
                       className="span"
@@ -142,7 +143,7 @@ export const CatalogCard = ({ restaurantId, category }) => {
                       })
                     }
                   >
-                    {quantity > 0 ? quantity : "Qo'shish +"}{" "}
+                    {quantity > 0 ? quantity : "Qo'shish +"}
                   </button>
                 </div>
               )}

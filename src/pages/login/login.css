@@ -55,7 +55,7 @@
 
 
 .active {
-    background: #fce000;
+    background: #fce000 !important;
     color: #555;
 }
 
