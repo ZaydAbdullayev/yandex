@@ -71,7 +71,7 @@ export const CatalogCard = ({ restaurantId, category }) => {
   };
 
   const addToLike = (id) => {
-    setFavorite((prevState) => (prevState === id ? !prevState : id));
+    setFavorite(id);
   };
 
   const filtered = product.filter((item) => {

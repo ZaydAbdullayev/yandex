@@ -58,7 +58,7 @@ export const Catalog = () => {
   const uniqueCategories = getUniqueCategories();
 
   const addToLike = (shop) => {
-    ApiService.fetching("add/toFavorites", shop)
+    ApiService.fetching("add/favRes", shop)
       .then((res) => {
         console.log(res);
         setFavorite(true);
