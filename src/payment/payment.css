@@ -288,22 +288,23 @@
 /* =============== app item ================= */
 .payment_body2 {
     width: 100%;
-    padding: 2% 7%;
+    padding: 4%;
     display: flex;
-    align-content: center;
     flex-wrap: wrap;
-    gap: 50px;
+    align-content: center;
+    justify-content: center;
+    gap: 30px;
 }
 
 .app_item {
-    width: calc(50% - 25px);
-    height: 250px;
-    border: 1px solid #eee;
+    width: calc(100% / 4 - 28px);
+    height: 140px;
+    border: 1px solid #aaa;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-
+    border-radius: 30px;
 }
 
 .app_item>img {
@@ -317,4 +318,67 @@
     margin-top: -20%;
     inline-size: 100%;
     text-align: center;
+}
+
+.add_card {
+    padding: 6% 5%;
+    border: 1px solid #ac0;
+    border-radius: 30px;
+    font-size: var(--fs4);
+    font-weight: 200;
+    color: #ac0;
+}
+
+.payment_btn {
+    padding: 3%;
+    background: #ac0;
+    border: 1px solid;
+    border-radius: 10px;
+    color: #fff;
+}
+
+.card_item {
+    position: absolute;
+    top: -100%;
+    left: 50%;
+    padding: 3%;
+    transform: translate(-50%, -50%);
+    width: 31.5%;
+    display: flex;
+    flex-direction: column;
+    background-image: url(../components/assets/images/shadowcard_bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    gap: var(--gap2);
+    border-radius: 15px;
+    overflow: hidden;
+    transition: all 0.5s ease;
+}
+
+.visa {
+    background-image: url(../components/assets/images/45d019cb3dabe19af72aa50ea4411c2a.jpeg);
+}
+
+.uzcard {
+    background-image: url(../components/assets/images/uzacard_bg.jpg);
+}
+
+.humo {
+    background-image: url(../components/assets/images/payment_system.jpg);
+}
+
+.card_item>input {
+    width: 100%;
+    height: 38px;
+    padding: 0 3%;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    background: none;
+    backdrop-filter: blur(15px);
+    color: #fff;
+    font-size: var(--fs5);
+}
+
+.card_item>input::placeholder {
+    color: #fff8;
 }

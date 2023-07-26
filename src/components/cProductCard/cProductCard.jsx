@@ -22,8 +22,6 @@ export const CatalogCard = ({ restaurantId, category }) => {
   const { enqueueSnackbar } = useSnackbar();
   const user_id = user?.users?.id;
 
-  console.log(cart);
-
   useEffect(() => {
     ApiGetService.fetching("get/products")
       .then((res) => {
@@ -53,21 +51,19 @@ export const CatalogCard = ({ restaurantId, category }) => {
   };
 
   const updateCart = (item) => {
-    if (item.quantity > 0) {
-      ApiUpdateService.fetching(`update/cart/${user_id}/${item.id}`, item)
-        .then((res) => {
-          console.log(res);
-          dispatch(acUpdateCard());
-        })
-        .catch((err) => console.log(err));
-    } else {
-      ApiDeleteService.fetching(`remove/cartItem/${user_id}/${item.id}`)
-        .then((res) => {
-          console.log(res);
-          dispatch(acUpdateCard());
-        })
-        .catch((err) => console.log(err));
-    }
+    const service = item.quantity > 0 ? ApiUpdateService : ApiDeleteService;
+    const endpoint =
+      item.quantity > 0
+        ? `update/cart/${user_id}/${item.id}`
+        : `remove/cartItem/${user_id}/${item.id}`;
+
+    service
+      .fetching(endpoint, item)
+      .then((res) => {
+        console.log(res);
+        dispatch(acUpdateCard());
+      })
+      .catch((err) => console.log(err));
   };
 
   const addToLike = (id) => {
