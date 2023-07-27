@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./profil.css";
 import { ApiGetService, ApiUpdateService } from "../../services/api.service";
-import { PatternFormat, NumericFormat } from "react-number-format";
+import { NumericFormat } from "react-number-format";
 
 export const MyProfil = () => {
   const id = JSON.parse(localStorage.getItem("customer")).id || null;
