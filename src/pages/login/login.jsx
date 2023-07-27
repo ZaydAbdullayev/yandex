@@ -28,9 +28,8 @@ export const Signin = () => {
     if (pass1 === pass2) {
       ApiService.fetching("register/user", value)
         .then((res) => {
-          const user = res?.data?.innerData?.users;
-          localStorage.setItem("customer", JSON.stringify(user));
-          navigate("/");
+          console.log(res);
+          navigate("/login");
         })
         .catch((err) => console.log(err));
     }
@@ -119,8 +118,6 @@ export const Login = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const [err, setErr] = useState(false);
-  const [pass, setPass] = useState({});
-  const { pass1, pass2 } = pass;
 
   const handleShow = () => {
     setShow(!show);
@@ -134,19 +131,16 @@ export const Login = () => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const value = Object.fromEntries(formData.entries());
-    if (pass1 === pass2) {
-      ApiService.fetching("login/users", value)
-        .then((res) => {
-          console.log(res?.data);
-          const user = res?.data?.users;
-          localStorage.setItem("customer", JSON.stringify(user));
-          navigate("/");
-        })
-        .catch((err) => {
-          console.log(err);
-          setErr(true);
-        });
-    }
+    ApiService.fetching("login/users", value)
+      .then((res) => {
+        const user = res?.data?.innerData?.users;
+        localStorage.setItem("customer", JSON.stringify(user));
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        setErr(true);
+      });
   };
 
   return (
@@ -180,33 +174,10 @@ export const Login = () => {
               autoComplete="off"
               id="fpass"
               style={err ? { border: "2px solid tomato" } : {}}
-              onChange={(e) => setPass({ ...pass, pass1: e.target.value })}
             />
             <span onClick={handleShow} style={show ? {} : { color: "orange" }}>
               {show ? <BsEyeSlash /> : <BsEye />}
             </span>
-          </label>
-          <label>
-            <input
-              type={show ? "password" : "text"}
-              name="password"
-              placeholder="Parolni takrorlang"
-              required
-              autoComplete="off"
-              id="spass"
-              style={
-                err || pass1 !== pass2
-                  ? { border: "2px solid tomato", color: "tomato" }
-                  : {}
-              }
-              onChange={(e) => setPass({ ...pass, pass2: e.target.value })}
-            />
-            <span onClick={handleShow} style={show ? {} : { color: "orange" }}>
-              {show ? <BsEyeSlash /> : <BsEye />}
-            </span>
-            {/* <p style={err ? { display: "flex" } : {}} className="failed">
-              Foydalanuvchi ismi yoki parol xaroligi...!
-            </p> */}
           </label>
           <button>Yuborish</button>
           <span>© 2023 Foodify</span>

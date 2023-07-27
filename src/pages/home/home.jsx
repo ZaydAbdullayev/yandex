@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ApiGetService } from "../../services/api.service";
 import { Map } from "../../components/map/map";
+// import { Test } from "../../components/map/test";
 
 import { BsTaxiFrontFill, BsFillStarFill } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";

@@ -1,11 +1,14 @@
-import React, { memo } from "react";
+import React, { memo, useState, useEffect } from "react";
 import "./map.css";
 
 export const Map = memo(() => {
-  const konumSorgula = () => {
+  const [location, setLocation] = useState();
+  useEffect(() => {
     document.getElementById("durum_mesaj").innerHTML = `Konum sorgulanıyor...`;
     navigator.geolocation.getCurrentPosition(oldu, olmadi);
-  };
+
+    console.log(navigator.geolocation);
+  });
 
   const oldu = (pos) => {
     document.getElementById("enlem").innerHTML = pos.coords.latitude;
@@ -15,13 +18,13 @@ export const Map = memo(() => {
     ).innerHTML = `${pos.coords.accuracy} metre`;
 
     document.getElementById("durum_mesaj").innerHTML = `Konum sonucu bulundu`;
+    setLocation(
+      `https://www.google.com/maps?output=embed&z=15&q=${pos.coords.latitude},${pos.coords.longitude}`
+    );
 
-    const mapembed = `https://www.google.com/maps?output=embed&z=15&q=${pos.coords.latitude},${pos.coords.longitude}`;
-    console.log(mapembed);
+    // document.getElementById("harita").setAttribute("src", location);
 
-    document.getElementById("harita").setAttribute("src", mapembed);
-
-    console.log(pos);
+    console.log(pos.coords);
   };
 
   function olmadi(hata) {
@@ -52,16 +55,27 @@ export const Map = memo(() => {
 
         <iframe
           id="harita"
+          title="yol tarifi"
+          src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d12044.657228843478!2d71.64101290607886!3d40.999776786085334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x38bb4bfc001a5dbd%3A0x40a244bc191925c0!2sAlisher%20Navoi%20Street%2C%20Namangan!3m2!1d40.992427!2d71.6618659!4m5!1s0x38bb4b36c13a943d%3A0xc823450731b8a6c6!2sChorsu%2C%20Namangan!3m2!1d41.005746099999996!2d71.6435589!5e0!3m2!1str!2s!4v1690372398006!5m2!1str!2s"
+          width="600"
+          height="450"
+          allowFullScreen="off"
+          loading="lazy"
+          referrerPolicy="no-referrer-when-downgrade"
+        ></iframe>
+
+        {/* <iframe
+          id="harita"
           title="cordinate"
-          src="https://www.google.com/maps?output=embed&q=Namangan"
+          src={location}
           width="100%"
           height="450"
           allowFullScreen=""
           aria-hidden="false"
           tabIndex="0"
-        ></iframe>
+        ></iframe> */}
 
-        <button onClick={konumSorgula}>Konumu bul</button>
+        {/* <button onClick={konumSorgula}>Konumu bul</button> */}
       </div>
 
       <div className="kutucuk">

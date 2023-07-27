@@ -293,7 +293,7 @@ export const Payment = () => {
                   ? "card_item humo"
                   : bg === "4"
                   ? "card_item visa"
-                  : bg === "7"
+                  : bg === "8"
                   ? "card_item uzcard"
                   : "card_item"
               }
