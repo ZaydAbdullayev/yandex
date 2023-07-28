@@ -88,7 +88,11 @@ export const CatalogCard = ({ restaurantId, category }) => {
           : "Qo'shish";
 
         return (
-          <figure className="catalog_product" key={item.id}>
+          <figure
+            className="catalog_product"
+            key={item.id}
+            style={item?.status === 0 ? { opacity: "0.4" } : {}}
+          >
             <img src={item.img} alt="images" />
             <figcaption className="product_info">
               <div>
