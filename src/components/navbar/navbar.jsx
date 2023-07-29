@@ -19,7 +19,7 @@ export const Navbar = () => {
   const [user, setUser] = useState([]);
 
   useEffect(() => {
-    setUser(JSON.parse(localStorage.getItem("customer")) || []);
+    setUser(JSON.parse(localStorage.getItem("customer")) || false);
   }, []);
 
   const log_in = () => {
@@ -75,7 +75,6 @@ export const Navbar = () => {
             </span>
             <select name="location">
               <option value="boburshox">Boburshox</option>
-              {/* Diğer seçenekler eklenebilir */}
             </select>
           </label>
         </div>
@@ -85,7 +84,6 @@ export const Navbar = () => {
           </span>
           <select name="language">
             <option value="en">English</option>
-            {/* Diğer diller eklenebilir */}
           </select>
         </label>
         <div className="card">
@@ -99,7 +97,7 @@ export const Navbar = () => {
             displayType="text"
           />
         </div>
-        {!user.length ? (
+        {user.length ? (
           <figure onClick={openModal} className="user_img">
             <img src={default_img} alt="user_photo" />
           </figure>
