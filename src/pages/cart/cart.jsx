@@ -146,10 +146,10 @@ export const Cart = memo(() => {
       {/* =========== delivery section ============ */}
       {!cart?.length ? (
         <div className="cart_delivery">
-          <span>
+          <span style={{ paddingRight: "5%" }}>
             <BsTaxiFrontFill />
           </span>
-          <p>Kamida 10 000 so'mdan boshlab bepul yetkazib berish hizmati</p>
+          <p> Kamida 10 000 so'mdan boshlab bepul yetkazib berish hizmati</p>
         </div>
       ) : (
         <div className="cart_delivery">

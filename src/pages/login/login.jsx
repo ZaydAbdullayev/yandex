@@ -5,9 +5,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { BsEye, BsEyeSlash } from "react-icons/bs";
 import { IoIosCloseCircle } from "react-icons/io";
 import { ApiService } from "../../services/api.service";
+import { useSnackbar } from "notistack";
 
 export const Signin = () => {
   const navigate = useNavigate();
+  const { enqueueSnackbar } = useSnackbar();
   const [show, setShow] = useState(true);
   const [pass, setPass] = useState({});
   const { pass1, pass2 } = pass;
@@ -28,7 +30,9 @@ export const Signin = () => {
     if (pass1 === pass2) {
       ApiService.fetching("register/user", value)
         .then((res) => {
-          console.log(res);
+          const msg =
+            "Foydalanuvchi hisobi yaratildi. Iltimos ilovadan foydalanish qaytadan hisobga kiring";
+          enqueueSnackbar(msg, { variant: "success" });
           navigate("/login");
         })
         .catch((err) => console.log(err));
@@ -118,6 +122,7 @@ export const Login = () => {
   const navigate = useNavigate();
   const [show, setShow] = useState(true);
   const [err, setErr] = useState(false);
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleShow = () => {
     setShow(!show);
@@ -135,7 +140,10 @@ export const Login = () => {
       .then((res) => {
         const user = res?.data?.innerData?.users;
         localStorage.setItem("customer", JSON.stringify(user));
+        const msg = "Hisobga muvoffaqiyatli kirildi!!!";
+        enqueueSnackbar(msg, { variant: "success" });
         navigate("/");
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);

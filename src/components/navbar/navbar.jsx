@@ -97,7 +97,7 @@ export const Navbar = () => {
             displayType="text"
           />
         </div>
-        {user.length ? (
+        {user?.token ? (
           <figure onClick={openModal} className="user_img">
             <img src={default_img} alt="user_photo" />
           </figure>

@@ -3,7 +3,7 @@ export const reCardUpdate = (state = false, action) => {
     case "UPDATE_CARD":
       return !state;
     case "TRUE":
-      return true;
+      return !state;
     default:
       return state;
   }
@@ -13,9 +13,7 @@ export const acUpdateCard = () => {
   return { type: "UPDATE_CARD" };
 };
 
-export const acUpdate = (payload) => {
-  return {
-    type: "TRUE",
-    payload,
-  };
-};
+export const acUpdate = (payload) => ({
+  type: "TRUE",
+  payload,
+});

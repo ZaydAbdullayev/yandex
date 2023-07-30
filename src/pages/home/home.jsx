@@ -3,8 +3,7 @@ import "./home.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ApiGetService } from "../../services/api.service";
-import { Map } from "../../components/map/map";
-// import { Test } from "../../components/map/test";
+// import { Map } from "../../components/map/map";
 
 import { BsTaxiFrontFill, BsFillStarFill } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";
@@ -98,7 +97,7 @@ export const Home = () => {
         <div className="product-item">
           {shop?.map((shop) => {
             return (
-              <section onClick={viewShop} key={shop.id}>
+              <section onClick={() => viewShop(shop.id)} key={shop.id}>
                 <div>
                   <button>Free dilevery</button>
                   <figure>
@@ -136,14 +135,14 @@ export const Home = () => {
               </section>
             );
           })}
-          <Map />
+          {/* <Map /> */}
         </div>
 
         <p className="Restaurant">All</p>
         <div className="product-card">
           {restaurant.map((shop) => {
             return (
-              <section onClick={viewShop} key={shop.id}>
+              <section onClick={() => viewShop(shop.id)} key={shop.id}>
                 <div>
                   <button>Free dilevery</button>
                   <figure>
