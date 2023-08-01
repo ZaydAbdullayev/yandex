@@ -11,7 +11,7 @@ import { useSnackbar } from "notistack";
 import { CalculateTotalPrice } from "../services/calc.service";
 import { acUpdateCard } from "../redux/cart";
 import { NumericFormat, PatternFormat } from "react-number-format";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { SiHomeadvisor } from "react-icons/si";
 import { MdDelete } from "react-icons/md";
 
@@ -43,6 +43,7 @@ export const Payment = () => {
   const [shop, setShop] = useState(null);
   const id = useParams().id;
   const { enqueueSnackbar } = useSnackbar();
+  const navigate = useNavigate();
 
   const payment_data = {
     address: adress_info.home,
@@ -109,6 +110,7 @@ export const Payment = () => {
       .then((res) => {
         const msg = "Buyurtmangiz restoranga yuborildi";
         enqueueSnackbar(msg, { variant: "success" });
+        navigate("/my/orders");
         ApiDeleteService.fetching(`empty/cart/${user_id}`)
           .then((res) => {
             console.log(res);
