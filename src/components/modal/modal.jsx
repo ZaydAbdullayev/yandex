@@ -10,7 +10,6 @@ export const Modal = () => {
   const modal = useSelector((state) => state.modal);
   const dispatch = useDispatch();
   const user = JSON?.parse(localStorage.getItem("customer")) || [];
-  console.log(user);
 
   const closeModal = () => {
     dispatch(acCloseModal());

@@ -1,6 +1,6 @@
 import React from "react";
 import "./components/assets/global.css";
-import "./components/assets/root.css"
+import "./components/assets/root.css";
 import { Routes, Route } from "react-router-dom";
 import { Layout } from "./pages/layout/layout";
 import { Home } from "./pages/home/home";
@@ -19,7 +19,7 @@ export const Router = () => {
           <Route path="/catalog/:id" element={<Catalog />} />
           <Route path="/my/profil" element={<MyProfil />} />
           <Route path="/my/favourite" element={<MyFavorite />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route path="/payment/:id" element={<Payment />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />
         </Route>

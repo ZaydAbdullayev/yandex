@@ -6,8 +6,6 @@ export const Map = memo(() => {
   useEffect(() => {
     document.getElementById("durum_mesaj").innerHTML = `Konum sorgulanıyor...`;
     navigator.geolocation.getCurrentPosition(oldu, olmadi);
-
-    console.log(navigator.geolocation);
   });
 
   const oldu = (pos) => {
@@ -22,7 +20,7 @@ export const Map = memo(() => {
       `https://www.google.com/maps?output=embed&z=15&q=${pos.coords.latitude},${pos.coords.longitude}`
     );
 
-    // document.getElementById("harita").setAttribute("src", location);
+    document.getElementById("harita").setAttribute("src", location);
 
     console.log(pos.coords);
   };
@@ -36,12 +34,10 @@ export const Map = memo(() => {
     console.log(hata);
   }
 
-  // console.log(navigator);
+  // https://www.google.com/maps/dir/40.2444958,70.3400734/40.9919616,71.6827157/40.2994958,70.2400734
 
   return (
     <div className="map">
-      <h1>HTML ile konum bilgisi sorgulama</h1>
-
       <div className="esas">
         <p>
           <strong>Enlem:</strong> <span id="enlem">-</span>
@@ -53,7 +49,7 @@ export const Map = memo(() => {
           <strong>Doğruluk:</strong> <span id="dogruluk">-</span>
         </p>
 
-        <iframe
+        {/* <iframe
           id="harita"
           title="yol tarifi"
           src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d12044.657228843478!2d71.64101290607886!3d40.999776786085334!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x38bb4bfc001a5dbd%3A0x40a244bc191925c0!2sAlisher%20Navoi%20Street%2C%20Namangan!3m2!1d40.992427!2d71.6618659!4m5!1s0x38bb4b36c13a943d%3A0xc823450731b8a6c6!2sChorsu%2C%20Namangan!3m2!1d41.005746099999996!2d71.6435589!5e0!3m2!1str!2s!4v1690372398006!5m2!1str!2s"
@@ -62,9 +58,9 @@ export const Map = memo(() => {
           allowFullScreen="off"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-        ></iframe>
+        ></iframe> */}
 
-        {/* <iframe
+        <iframe
           id="harita"
           title="cordinate"
           src={location}
@@ -73,7 +69,7 @@ export const Map = memo(() => {
           allowFullScreen=""
           aria-hidden="false"
           tabIndex="0"
-        ></iframe> */}
+        ></iframe>
 
         {/* <button onClick={konumSorgula}>Konumu bul</button> */}
       </div>

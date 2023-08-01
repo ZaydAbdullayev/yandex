@@ -139,13 +139,16 @@ export const CatalogCard = ({ restaurantId, category }) => {
                   style={existingCartItem ? {} : { justifyContent: "center" }}
                 >
                   <button
-                    onClick={() =>
-                      addToCart({
-                        ...item,
-                        quantity: 1,
-                        user_id: user_id,
-                      })
-                    }
+                    style={item.status === 0 ? { cursor: "not-allowed" } : {}}
+                    onClick={() => {
+                      if (item && item.status === 1) {
+                        addToCart({
+                          ...item,
+                          quantity: 1,
+                          user_id: user_id,
+                        });
+                      }
+                    }}
                   >
                     {quantity > 0 ? quantity : "Qo'shish +"}
                   </button>

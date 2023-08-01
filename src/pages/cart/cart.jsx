@@ -9,7 +9,7 @@ import {
   ApiGetService,
 } from "../../services/api.service";
 import { acUpdateCard } from "../../redux/cart";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import empty from "../../components/assets/images/empty-cart.gif";
 import { BsTaxiFrontFill, BsTaxiFront, BsInfoCircle } from "react-icons/bs";
@@ -21,6 +21,7 @@ export const Cart = memo(() => {
   const updateCard = useSelector((state) => state.updateCard);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const id = useParams().id;
 
   const user_id = user?.users?.id;
 
@@ -54,9 +55,8 @@ export const Cart = memo(() => {
     }
   };
 
-  const payment = (data) => {
-    console.log(data);
-    navigate("/payment");
+  const payment = () => {
+    navigate(`/payment/${id}`);
   };
 
   const handleDelCart = () => {
@@ -162,7 +162,7 @@ export const Cart = memo(() => {
             </p>
             <BsInfoCircle />
           </label>
-          <button onClick={() => payment({ data: cart })}>
+          <button onClick={() => payment()}>
             Jami to'lov:{" "}
             <NumericFormat
               value={total}

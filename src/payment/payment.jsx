@@ -10,6 +10,7 @@ import {
 import { CalculateTotalPrice } from "../services/calc.service";
 import { acUpdateCard } from "../redux/cart";
 import { NumericFormat, PatternFormat } from "react-number-format";
+import { useParams } from "react-router-dom";
 import { SiHomeadvisor } from "react-icons/si";
 import { MdDelete } from "react-icons/md";
 
@@ -32,32 +33,32 @@ export const Payment = () => {
   const [total, setTotal] = useState(0);
   const updateCard = useSelector((state) => state.updateCard);
   const [write, setWrite] = useState(false);
-  const [adress_info, setAdress_info] = useState([]);
+  const [adress_info, setAdress_info] = useState({});
   const [active, setActive] = useState(0);
   const [open, setOpen] = useState(false);
   const [bg, setBg] = useState("");
   const dispatch = useDispatch();
   const user_id = user?.users?.id;
+  const [shop, setShop] = useState(null);
   const productInfo = useMemo(
     () => cart?.map(({ id, quantity }) => `${quantity}_${id}`),
     [cart]
   );
+  const id = useParams().id;
 
-  const payment_data = useMemo(
-    () =>
-      JSON.stringify({
-        address: adress_info,
-        product_data: productInfo,
-        payment: "token",
-        price: total,
-        user_id: user_id,
-        user_location: {
-          latitude: "4567584985784938574934857",
-          longitude: "4567584985784938574934857",
-        },
-      }),
-    [adress_info, productInfo, total, user_id]
-  );
+  const payment_data = {
+    address: adress_info.home,
+    description: adress_info.description,
+    padyezd: adress_info.padez,
+    qavat: adress_info.qavat,
+    product_data: productInfo.toString(),
+    payment: "token",
+    price: total,
+    user_id: user_id,
+    restaurant_id: id,
+    latitude: "4567584985784938574934857",
+    longitude: "4567584985784938574934857",
+  };
 
   useEffect(() => {
     ApiGetService.fetching(`cart/get/products/${user_id}`)
@@ -69,7 +70,13 @@ export const Payment = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, [updateCard, user_id]);
+
+    ApiGetService.fetching(`get/restaurant/${id}`)
+      .then((res) => {
+        setShop(res?.data?.innerData);
+      })
+      .catch((err) => console.log(err));
+  }, [updateCard, user_id, id]);
 
   const updateCart = (item) => {
     const service = item.quantity > 0 ? ApiUpdateService : ApiDeleteService;
@@ -109,7 +116,7 @@ export const Payment = () => {
 
   return (
     <div className="payment_box">
-      <h1>Restaurant name</h1>
+      <h1>{shop?.username.split("_").join(" ")}</h1>
       <div className="rigth_section">
         <p>Yetakazish shartlari</p>
         <div className="whose_order">
@@ -144,7 +151,7 @@ export const Payment = () => {
           <label>
             <p>Podyez №:</p>
             <input
-              type="text"
+              type="number"
               autoComplete="off"
               onChange={(e) =>
                 setAdress_info({ ...adress_info, padez: e.target.value })
