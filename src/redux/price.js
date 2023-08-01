@@ -1,5 +1,4 @@
 export const rePrice = (state = null, action) => {
-  console.log(state);
   switch (action.type) {
     case "TOTAL":
       return action.payload;

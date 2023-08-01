@@ -10,6 +10,7 @@ import {
 } from "../../services/api.service";
 import { acUpdateCard } from "../../redux/cart";
 import { useNavigate, useParams } from "react-router-dom";
+import { acPrice } from "../../redux/price";
 
 import empty from "../../components/assets/images/empty-cart.gif";
 import { BsTaxiFrontFill, BsTaxiFront, BsInfoCircle } from "react-icons/bs";
@@ -31,11 +32,12 @@ export const Cart = memo(() => {
         setCart(res?.data?.data);
         const total_price = CalculateTotalPrice(res?.data?.data);
         setTotal(total_price);
+        dispatch(acPrice(total_price));
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [updateCard, user_id]);
+  }, [dispatch, updateCard, user_id]);
 
   const updateCart = (item) => {
     if (item.quantity > 0) {

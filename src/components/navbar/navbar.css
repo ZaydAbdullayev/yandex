@@ -196,6 +196,7 @@
 }
 
 .card>:nth-child(2) {
+    width: 100px;
     padding: 0.5%;
     font-size: var(--fs5);
     font-weight: 600;

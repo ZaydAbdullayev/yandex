@@ -93,9 +93,8 @@ export const Navbar = () => {
           </span>
           <NumericFormat
             value={total_price}
-            suffix=" so'm"
-            allowLeadingZeros
-            thousandSeparator=","
+            suffix=" sum"
+            thousandSeparator=" "
             displayType="text"
             style={total_price ? {} : { display: "none" }}
           />

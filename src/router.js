@@ -12,6 +12,21 @@ import { Payment } from "./payment/payment";
 import { Orders } from "./pages/orders/orders";
 
 export const Router = () => {
+  const span = document.createElement("span");
+  span.classList.add("stm-animate");
+  document.body.appendChild(span);
+
+  document.addEventListener("click", function (event) {
+    const x = event.clientX;
+    const y = event.clientY;
+    span.style.top = `${y - 30}px`;
+    span.style.left = `${x - 30}px`;
+    span.classList.add("active");
+  });
+
+  span.addEventListener("animationend", function () {
+    span.classList.remove("active");
+  });
   return (
     <>
       <Routes>
