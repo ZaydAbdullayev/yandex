@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./navbar.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { NumericFormat } from "react-number-format";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { acOpenMadal } from "../../redux/modal";
 
 import { IoMdPin } from "react-icons/io";
@@ -17,6 +17,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [user, setUser] = useState([]);
+  const total_price = useSelector((state) => state.price);
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("customer")) || false);
@@ -91,10 +92,12 @@ export const Navbar = () => {
             <IoFastFoodSharp />
           </span>
           <NumericFormat
-            value="13000"
-            suffix="sum"
+            value={total_price}
+            suffix=" so'm"
+            allowLeadingZeros
             thousandSeparator=","
             displayType="text"
+            style={total_price ? {} : { display: "none" }}
           />
         </div>
         {user?.token ? (

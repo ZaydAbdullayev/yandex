@@ -7,6 +7,7 @@ import {
   ApiDeleteService,
   ApiService,
 } from "../services/api.service";
+import { useSnackbar } from "notistack";
 import { CalculateTotalPrice } from "../services/calc.service";
 import { acUpdateCard } from "../redux/cart";
 import { NumericFormat, PatternFormat } from "react-number-format";
@@ -40,18 +41,15 @@ export const Payment = () => {
   const dispatch = useDispatch();
   const user_id = user?.users?.id;
   const [shop, setShop] = useState(null);
-  const productInfo = useMemo(
-    () => cart?.map(({ id, quantity }) => `${quantity}_${id}`),
-    [cart]
-  );
   const id = useParams().id;
+  const { enqueueSnackbar } = useSnackbar();
 
   const payment_data = {
     address: adress_info.home,
     description: adress_info.description,
     padyezd: adress_info.padez,
     qavat: adress_info.qavat,
-    product_data: productInfo.toString(),
+    product_data: JSON.stringify(cart),
     payment: "token",
     price: total,
     user_id: user_id,
@@ -109,7 +107,14 @@ export const Payment = () => {
   const handlePayment = () => {
     ApiService.fetching("receive/order", payment_data)
       .then((res) => {
-        console.log(res);
+        const msg = "Buyurtmangiz restoranga yuborildi";
+        enqueueSnackbar(msg, { variant: "success" });
+        ApiDeleteService.fetching(`empty/cart/${user_id}`)
+          .then((res) => {
+            console.log(res);
+            dispatch(acUpdateCard());
+          })
+          .catch((err) => console.log(err));
       })
       .catch((err) => console.log(err));
   };
