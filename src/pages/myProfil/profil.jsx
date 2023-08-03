@@ -5,10 +5,9 @@ import { NumericFormat } from "react-number-format";
 
 export const MyProfil = () => {
   const id = JSON.parse(localStorage.getItem("customer")).id || null;
-  const [user, setUser] = useState([]);
+  const [users, setUser] = useState([]);
 
-  const phone = user?.phone?.split("+")[1];
-  console.log(phone);
+  const phone = users?.phone?.split("+")[1];
 
   useEffect(() => {
     ApiGetService.fetching(`get/user/${id}`)
@@ -46,7 +45,7 @@ export const MyProfil = () => {
                   <input
                     placeholder="Name..."
                     type="text"
-                    defaultValue={user?.username}
+                    defaultValue={users?.username}
                   />
                 </section>
                 <section>
@@ -54,7 +53,7 @@ export const MyProfil = () => {
                   <input
                     placeholder="******"
                     type="password"
-                    defaultValue={user?.password}
+                    defaultValue={users?.password}
                   />
                 </section>
                 <section>
