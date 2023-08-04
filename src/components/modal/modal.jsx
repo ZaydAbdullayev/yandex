@@ -36,7 +36,7 @@ export const Modal = () => {
         <ul>
           <Link to="/my/profil">Mening profilim</Link>
           <Link to="/my/favourite">Mening yoqtirganlarim</Link>
-          <Link to="/">Buyurtlarim</Link>
+          <Link to="/my/orders">Buyurtlarim</Link>
           <Link to="/">Bildirishnomalar</Link>
           <li onClick={log_out}>Chiqish</li>
         </ul>

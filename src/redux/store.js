@@ -3,6 +3,7 @@ import { reCardUpdate } from "./cart";
 import { reModal } from "./modal";
 import { reLocation } from "./map";
 import { rePrice } from "./price";
+import { reLoading } from "./loading";
 
 export const store = configureStore({
   reducer: combineReducers({
@@ -10,5 +11,6 @@ export const store = configureStore({
     modal: reModal,
     location: reLocation,
     price: rePrice,
+    loading: reLoading,
   }),
 });

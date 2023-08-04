@@ -10,7 +10,7 @@ import { Login, Signin } from "./pages/login/login";
 import { MyProfil } from "./pages/myProfil/profil";
 import { MyFavorite } from "./pages/myFavorite/favorite.jsx";
 import { Payment } from "./payment/payment";
-import { Orders } from "./pages/orders/orders";
+import { MyOrders } from "./pages/myOrders/myOrders";
 
 export const Router = () => {
   const span = document.createElement("span");
@@ -35,8 +35,8 @@ export const Router = () => {
           <Route index element={<Home />} />
           <Route path="/catalog/:id" element={<Catalog />} />
           <Route path="/my/profil" element={<MyProfil />} />
-          <Route path="/my/orders" element={<Orders />} />
           <Route path="/my/favourite" element={<MyFavorite />} />
+          <Route path="/my/orders" element={<MyOrders />} />
           <Route path="/payment/:id" element={<Payment />} />
           <Route path="/signin" element={<Signin />} />
           <Route path="/login" element={<Login />} />

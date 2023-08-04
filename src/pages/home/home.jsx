@@ -3,7 +3,8 @@ import "./home.css";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { ApiGetService } from "../../services/api.service";
-// import { Map } from "../../components/map/map";
+import { useDispatch } from "react-redux";
+import { acLoading } from "../../redux/loading";
 
 import { BsTaxiFrontFill, BsFillStarFill } from "react-icons/bs";
 import { MdDeliveryDining } from "react-icons/md";
@@ -11,16 +12,19 @@ import { MdDeliveryDining } from "react-icons/md";
 export const Home = () => {
   const [restaurant, setRestaurant] = useState([]);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
+    dispatch(acLoading(true));
     ApiGetService.fetching("get/restaurants")
       .then((res) => {
         setRestaurant(res?.data?.data);
       })
       .catch((err) => {
         console.log(err);
-      });
-  }, []);
+      })
+      .finally(() => dispatch(acLoading(false)));
+  }, [dispatch]);
 
   const viewShop = (id) => {
     navigate(`/catalog/${id}`);
