@@ -159,9 +159,7 @@ export const Catalog = () => {
               <Fragment key={category}>
                 <h1
                   id={category}
-                  style={
-                    selectedCategory === category ? { } : {}
-                  }
+                  style={selectedCategory === category ? {} : {}}
                 >
                   {category}
                 </h1>

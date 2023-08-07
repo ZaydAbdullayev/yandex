@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, memo } from "react";
 import "./cProductCard.css";
 import { NumericFormat } from "react-number-format";
 import {
@@ -13,7 +13,7 @@ import { acUpdateCard } from "../../redux/cart";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 
-export const CatalogCard = ({ restaurantId, category }) => {
+export const CatalogCard = memo(({ restaurantId, category }) => {
   const [user, setUser] = useState([]);
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
@@ -176,4 +176,4 @@ export const CatalogCard = ({ restaurantId, category }) => {
       })}
     </>
   );
-};
+});

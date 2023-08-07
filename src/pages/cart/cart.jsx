@@ -31,8 +31,8 @@ export const Cart = memo(() => {
       .then((res) => {
         setCart(res?.data?.data);
         const total_price = CalculateTotalPrice(res?.data?.data);
-        setTotal(total_price);
-        dispatch(acPrice(total_price));
+        setTotal(total_price ? total_price : 0);
+        dispatch(acPrice(total_price ? total_price : 0));
       })
       .catch((err) => {
         console.log(err);
@@ -43,14 +43,12 @@ export const Cart = memo(() => {
     if (item.quantity > 0) {
       ApiUpdateService.fetching(`update/cart/${user_id}/${item.id}`, item)
         .then((res) => {
-          console.log(res);
           dispatch(acUpdateCard());
         })
         .catch((err) => console.log(err));
     } else {
       ApiDeleteService.fetching(`remove/cartItem/${user_id}/${item.id}`)
         .then((res) => {
-          console.log(res);
           dispatch(acUpdateCard());
         })
         .catch((err) => console.log(err));
@@ -67,7 +65,6 @@ export const Cart = memo(() => {
     if (confirm) {
       ApiDeleteService.fetching(`empty/cart/${user_id}`)
         .then((res) => {
-          console.log(res);
           dispatch(acUpdateCard());
         })
         .catch((err) => console.log(err));
