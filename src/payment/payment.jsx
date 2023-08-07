@@ -356,7 +356,7 @@ export const Payment = () => {
           </div>
         )}
       </div>
-      <button onClick={handlePayment}>Buyurtma berish</button>
+      <button onClick={handlePayment} className="payment_btn">Buyurtma berish</button>
     </div>
   );
 };

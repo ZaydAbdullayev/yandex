@@ -160,7 +160,7 @@ export const Cart = memo(() => {
               <span>
                 <BsTaxiFront />
               </span>
-              Yetkazib berish 0sum
+              Yetkazib berish 0 sum
             </p>
             <BsInfoCircle />
           </label>

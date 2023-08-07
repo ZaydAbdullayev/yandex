@@ -19,7 +19,7 @@ export const Signin = () => {
   };
 
   const closeModal = () => {
-    navigate("/");
+    navigate(-1);
   };
 
   const handleSubmit = (e) => {
@@ -35,7 +35,7 @@ export const Signin = () => {
           enqueueSnackbar(msg, { variant: "success" });
           navigate("/login");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {});
     }
   };
 
@@ -129,7 +129,7 @@ export const Login = () => {
   };
 
   const closeModal = () => {
-    navigate("/");
+    navigate(-1);
   };
 
   const handleSubmit = (e) => {
@@ -142,11 +142,13 @@ export const Login = () => {
         localStorage.setItem("customer", JSON.stringify(user));
         const msg = "Hisobga muvoffaqiyatli kirildi!!!";
         enqueueSnackbar(msg, { variant: "success" });
-        navigate("/");
+        navigate(-1);
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
+        const msg =
+          "Foydalanuvch yoki parolda xatolik bor iltimos qaytadan urinib ko'ring! ";
+        enqueueSnackbar(msg, { variant: "warning" });
         setErr(true);
       });
   };

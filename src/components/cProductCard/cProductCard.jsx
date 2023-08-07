@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import "./cProductCard.css";
 import { NumericFormat } from "react-number-format";
 import {
@@ -7,20 +7,25 @@ import {
   ApiGetService,
   ApiDeleteService,
 } from "../../services/api.service";
-import { useSnackbar } from "notistack";
+import { enqueueSnackbar } from "notistack";
 import { useSelector, useDispatch } from "react-redux";
 import { acUpdateCard } from "../../redux/cart";
 import { MdOutlineFavoriteBorder, MdFavorite } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 export const CatalogCard = ({ restaurantId, category }) => {
-  const user = JSON.parse(localStorage.getItem("customer")) || [];
+  const [user, setUser] = useState([]);
   const [product, setProduct] = useState([]);
   const [cart, setCart] = useState([]);
   const updateCard = useSelector((state) => state.updateCard);
   const dispatch = useDispatch();
   const [favorite, setFavorite] = useState(false);
-  const { enqueueSnackbar } = useSnackbar();
   const user_id = user?.users?.id;
+  const navigate = useNavigate();
+
+  useMemo(() => {
+    setUser(JSON.parse(localStorage.getItem("customer")) || false);
+  }, []);
 
   useEffect(() => {
     ApiGetService.fetching("get/products")
@@ -41,13 +46,17 @@ export const CatalogCard = ({ restaurantId, category }) => {
   }, [updateCard, user_id]);
 
   const addToCart = (item) => {
-    ApiService.fetching("add/toCart", item)
-      .then((res) => {
-        const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi!";
-        enqueueSnackbar(msg, { variant: "success" });
-        dispatch(acUpdateCard());
-      })
-      .catch((err) => console.log(err));
+    if (user.token) {
+      ApiService.fetching("add/toCart", item)
+        .then((res) => {
+          const msg = "Mahsulot savatga muvoffaqiyatli qo'shildi!";
+          enqueueSnackbar(msg, { variant: "success" });
+          dispatch(acUpdateCard());
+        })
+        .catch((err) => console.log(err));
+    } else {
+      navigate("/signin");
+    }
   };
 
   const updateCart = (item) => {

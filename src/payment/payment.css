@@ -383,3 +383,12 @@
 .card_item>input::placeholder {
     color: #fff8;
 }
+
+.payment_btn {
+    padding: 1% 3%;
+    font-size: var(--fs5);
+    color: #fff;
+    background: #38b000;
+    border: none;
+    border-radius: 10px;
+}
