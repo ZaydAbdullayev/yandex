@@ -29,7 +29,7 @@ export const Router = () => {
 
   useEffect(() => {
     if (isMobile) {
-      window.location.href = `http://localhost:3000`;
+      window.location.href = `https://mobile.foodify.uz`;
     } else {
       window.location.href = `https://foodify.uz`;
     }
