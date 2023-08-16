@@ -13,7 +13,7 @@ import { Payment } from "./payment/payment";
 import { MyOrders } from "./pages/myOrders/myOrders";
 
 export const Router = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 920);
 
   useEffect(() => {
     const handleResize = () => {
